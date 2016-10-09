@@ -22,16 +22,28 @@ func (s *SysInfo) GetUptime() time.Duration {
 	return time.Duration(s.Uptime) * time.Second
 }
 
-func (s *SysInfo) GetTotalRAMinKB() uint64 {
+func (s *SysInfo) GetTotalRAMInKB() uint64 {
 	return s.Totalram / uint64(KB)
 }
 
-func (s *SysInfo) GetTotalRAMinMB() uint64 {
+func (s *SysInfo) GetTotalRAMInMB() uint64 {
 	return s.Totalram / uint64(MB)
 }
 
-func (s *SysInfo) GetTotalRAMinGB() float64 {
+func (s *SysInfo) GetTotalRAMInGB() float64 {
 	return float64(s.Totalram) / GB
+}
+
+func (s *SysInfo) GetFreeRAMInKB() uint64 {
+	return s.Freeram / uint64(KB)
+}
+
+func (s *SysInfo) GetFreeRAMInMB() uint64 {
+	return s.Freeram / uint64(MB)
+}
+
+func (s *SysInfo) GetFreeRAMInGB() float64 {
+	return float64(s.Freeram) / GB
 }
 
 func GetSysInfo() (*SysInfo, error) {
