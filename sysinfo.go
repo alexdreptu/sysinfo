@@ -17,7 +17,7 @@ const (
 	GB
 )
 
-// GetUpdate returns uptime in human readable form
+// GetUptime returns uptime in human readable form
 func (s *SysInfo) GetUptime() time.Duration {
 	return time.Duration(s.Uptime) * time.Second
 }
