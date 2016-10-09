@@ -3,6 +3,7 @@ package sysinfo
 import (
 	"bytes"
 	"encoding/gob"
+	"time"
 
 	"golang.org/x/sys/unix"
 )
@@ -15,6 +16,11 @@ const (
 	MB
 	GB
 )
+
+// GetUpdate returns uptime in human readable form
+func (s *SysInfo) GetUptime() time.Duration {
+	return time.Duration(s.Uptime) * time.Second
+}
 
 func (s *SysInfo) GetTotalRAMinKB() uint64 {
 	return s.Totalram / uint64(KB)
