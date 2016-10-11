@@ -3,7 +3,7 @@ package sysinfo
 import "testing"
 
 func TestGetUptime(t *testing.T) {
-	sys := &SysInfo{}
+	sys := &Sysinfo{}
 	if err := sys.Get(); err != nil {
 		t.Fatal(err)
 	}
@@ -11,7 +11,7 @@ func TestGetUptime(t *testing.T) {
 }
 
 func TestNumberOfProcs(t *testing.T) {
-	sys := &SysInfo{}
+	sys := &Sysinfo{}
 	if err := sys.Get(); err != nil {
 		t.Fatal(err)
 	}
@@ -19,7 +19,7 @@ func TestNumberOfProcs(t *testing.T) {
 }
 
 func TestGetTotalRAMInKB(t *testing.T) {
-	sys := &SysInfo{}
+	sys := &Sysinfo{}
 	if err := sys.Get(); err != nil {
 		t.Fatal(err)
 	}
@@ -27,7 +27,7 @@ func TestGetTotalRAMInKB(t *testing.T) {
 }
 
 func TestGetTotalRAMInMB(t *testing.T) {
-	sys := &SysInfo{}
+	sys := &Sysinfo{}
 	if err := sys.Get(); err != nil {
 		t.Fatal(err)
 	}
@@ -35,7 +35,7 @@ func TestGetTotalRAMInMB(t *testing.T) {
 }
 
 func TestGetTotalRAMInGB(t *testing.T) {
-	sys := &SysInfo{}
+	sys := &Sysinfo{}
 	if err := sys.Get(); err != nil {
 		t.Fatal(err)
 	}
@@ -43,7 +43,7 @@ func TestGetTotalRAMInGB(t *testing.T) {
 }
 
 func TestGetTotalHighRAMInKB(t *testing.T) {
-	sys := &SysInfo{}
+	sys := &Sysinfo{}
 	if err := sys.Get(); err != nil {
 		t.Fatal(err)
 	}
@@ -51,7 +51,7 @@ func TestGetTotalHighRAMInKB(t *testing.T) {
 }
 
 func TestGetTotalHighRAMInMB(t *testing.T) {
-	sys := &SysInfo{}
+	sys := &Sysinfo{}
 	if err := sys.Get(); err != nil {
 		t.Fatal(err)
 	}
@@ -59,7 +59,7 @@ func TestGetTotalHighRAMInMB(t *testing.T) {
 }
 
 func TestGetTotalHighRAMInGB(t *testing.T) {
-	sys := &SysInfo{}
+	sys := &Sysinfo{}
 	if err := sys.Get(); err != nil {
 		t.Fatal(err)
 	}
@@ -67,7 +67,7 @@ func TestGetTotalHighRAMInGB(t *testing.T) {
 }
 
 func TestGetFreeRAMInKB(t *testing.T) {
-	sys := &SysInfo{}
+	sys := &Sysinfo{}
 	if err := sys.Get(); err != nil {
 		t.Fatal(err)
 	}
@@ -75,7 +75,7 @@ func TestGetFreeRAMInKB(t *testing.T) {
 }
 
 func TestGetFreeRAMInMB(t *testing.T) {
-	sys := &SysInfo{}
+	sys := &Sysinfo{}
 	if err := sys.Get(); err != nil {
 		t.Fatal(err)
 	}
@@ -83,7 +83,7 @@ func TestGetFreeRAMInMB(t *testing.T) {
 }
 
 func TestGetFreeRAMInGB(t *testing.T) {
-	sys := &SysInfo{}
+	sys := &Sysinfo{}
 	if err := sys.Get(); err != nil {
 		t.Fatal(err)
 	}
@@ -91,7 +91,7 @@ func TestGetFreeRAMInGB(t *testing.T) {
 }
 
 func TestGetFreeHighRAMInKB(t *testing.T) {
-	sys := &SysInfo{}
+	sys := &Sysinfo{}
 	if err := sys.Get(); err != nil {
 		t.Fatal(err)
 	}
@@ -99,7 +99,7 @@ func TestGetFreeHighRAMInKB(t *testing.T) {
 }
 
 func TestGetFreeHighRAMInMB(t *testing.T) {
-	sys := &SysInfo{}
+	sys := &Sysinfo{}
 	if err := sys.Get(); err != nil {
 		t.Fatal(err)
 	}
@@ -107,7 +107,7 @@ func TestGetFreeHighRAMInMB(t *testing.T) {
 }
 
 func TestGetFreeHighRAMInGB(t *testing.T) {
-	sys := &SysInfo{}
+	sys := &Sysinfo{}
 	if err := sys.Get(); err != nil {
 		t.Fatal(err)
 	}
@@ -115,7 +115,7 @@ func TestGetFreeHighRAMInGB(t *testing.T) {
 }
 
 func TestGetAvailRAMInKB(t *testing.T) {
-	sys := &SysInfo{}
+	sys := &Sysinfo{}
 	if err := sys.Get(); err != nil {
 		t.Fatal(err)
 	}
@@ -123,7 +123,7 @@ func TestGetAvailRAMInKB(t *testing.T) {
 }
 
 func TestGetAvailRAMInMB(t *testing.T) {
-	sys := &SysInfo{}
+	sys := &Sysinfo{}
 	if err := sys.Get(); err != nil {
 		t.Fatal(err)
 	}
@@ -131,7 +131,7 @@ func TestGetAvailRAMInMB(t *testing.T) {
 }
 
 func TestGetAvailRAMInGB(t *testing.T) {
-	sys := &SysInfo{}
+	sys := &Sysinfo{}
 	if err := sys.Get(); err != nil {
 		t.Fatal(err)
 	}
@@ -139,7 +139,7 @@ func TestGetAvailRAMInGB(t *testing.T) {
 }
 
 func TestGetBufferRAMInKB(t *testing.T) {
-	sys := &SysInfo{}
+	sys := &Sysinfo{}
 	if err := sys.Get(); err != nil {
 		t.Fatal(err)
 	}
@@ -147,7 +147,7 @@ func TestGetBufferRAMInKB(t *testing.T) {
 }
 
 func TestGetBufferRAMInMB(t *testing.T) {
-	sys := &SysInfo{}
+	sys := &Sysinfo{}
 	if err := sys.Get(); err != nil {
 		t.Fatal(err)
 	}
@@ -155,7 +155,7 @@ func TestGetBufferRAMInMB(t *testing.T) {
 }
 
 func TestGetBufferRAMInGB(t *testing.T) {
-	sys := &SysInfo{}
+	sys := &Sysinfo{}
 	if err := sys.Get(); err != nil {
 		t.Fatal(err)
 	}
@@ -163,7 +163,7 @@ func TestGetBufferRAMInGB(t *testing.T) {
 }
 
 func TestSharedRAMInKB(t *testing.T) {
-	sys := &SysInfo{}
+	sys := &Sysinfo{}
 	if err := sys.Get(); err != nil {
 		t.Fatal(err)
 	}
@@ -171,7 +171,7 @@ func TestSharedRAMInKB(t *testing.T) {
 }
 
 func TestSharedRAMInMB(t *testing.T) {
-	sys := &SysInfo{}
+	sys := &Sysinfo{}
 	if err := sys.Get(); err != nil {
 		t.Fatal(err)
 	}
@@ -179,7 +179,7 @@ func TestSharedRAMInMB(t *testing.T) {
 }
 
 func TestSharedRAMInGB(t *testing.T) {
-	sys := &SysInfo{}
+	sys := &Sysinfo{}
 	if err := sys.Get(); err != nil {
 		t.Fatal(err)
 	}
@@ -187,7 +187,7 @@ func TestSharedRAMInGB(t *testing.T) {
 }
 
 func TestTotalSwapInKB(t *testing.T) {
-	sys := &SysInfo{}
+	sys := &Sysinfo{}
 	if err := sys.Get(); err != nil {
 		t.Fatal(err)
 	}
@@ -195,7 +195,7 @@ func TestTotalSwapInKB(t *testing.T) {
 }
 
 func TestTotalSwapInMB(t *testing.T) {
-	sys := &SysInfo{}
+	sys := &Sysinfo{}
 	if err := sys.Get(); err != nil {
 		t.Fatal(err)
 	}
@@ -203,7 +203,7 @@ func TestTotalSwapInMB(t *testing.T) {
 }
 
 func TestTotalSwapInGB(t *testing.T) {
-	sys := &SysInfo{}
+	sys := &Sysinfo{}
 	if err := sys.Get(); err != nil {
 		t.Fatal(err)
 	}
@@ -211,7 +211,7 @@ func TestTotalSwapInGB(t *testing.T) {
 }
 
 func TestFreeSwapInKB(t *testing.T) {
-	sys := &SysInfo{}
+	sys := &Sysinfo{}
 	if err := sys.Get(); err != nil {
 		t.Fatal(err)
 	}
@@ -219,7 +219,7 @@ func TestFreeSwapInKB(t *testing.T) {
 }
 
 func TestFreeSwapInMB(t *testing.T) {
-	sys := &SysInfo{}
+	sys := &Sysinfo{}
 	if err := sys.Get(); err != nil {
 		t.Fatal(err)
 	}
@@ -227,7 +227,7 @@ func TestFreeSwapInMB(t *testing.T) {
 }
 
 func TestFreeSwapInGB(t *testing.T) {
-	sys := &SysInfo{}
+	sys := &Sysinfo{}
 	if err := sys.Get(); err != nil {
 		t.Fatal(err)
 	}
