@@ -33,7 +33,7 @@ func (s *Sysinfo) GetTotalRAMInKB() uint64 {
 	return ConvertBToKB(s.Totalram)
 }
 
-func (s *Sysinfo) GetTotalRAMInMB() uint64 {
+func (s *Sysinfo) GetTotalRAMInMB() float64 {
 	return ConvertBToMB(s.Totalram)
 }
 
@@ -45,7 +45,7 @@ func (s *Sysinfo) GetTotalHighRAMInKB() uint64 {
 	return ConvertBToKB(s.Totalhigh)
 }
 
-func (s *Sysinfo) GetTotalHighRAMInMB() uint64 {
+func (s *Sysinfo) GetTotalHighRAMInMB() float64 {
 	return ConvertBToMB(s.Totalhigh)
 }
 
@@ -58,7 +58,7 @@ func (s *Sysinfo) GetFreeRAMInKB() uint64 {
 	return ConvertBToKB(s.Freeram)
 }
 
-func (s *Sysinfo) GetFreeRAMInMB() uint64 {
+func (s *Sysinfo) GetFreeRAMInMB() float64 {
 	return ConvertBToMB(s.Freeram)
 }
 
@@ -70,7 +70,7 @@ func (s *Sysinfo) GetFreeHighRAMInKB() uint64 {
 	return ConvertBToKB(s.Freehigh)
 }
 
-func (s *Sysinfo) GetFreeHighRAMInMB() uint64 {
+func (s *Sysinfo) GetFreeHighRAMInMB() float64 {
 	return ConvertBToMB(s.Freehigh)
 }
 
@@ -84,7 +84,7 @@ func (s *Sysinfo) GetAvailRAMInKB() uint64 {
 	return ConvertBToKB(s.Availram)
 }
 
-func (s *Sysinfo) GetAvailRAMInMB() uint64 {
+func (s *Sysinfo) GetAvailRAMInMB() float64 {
 	return ConvertBToMB(s.Availram)
 }
 
@@ -96,7 +96,7 @@ func (s *Sysinfo) GetBufferRAMInKB() uint64 {
 	return ConvertBToKB(s.Bufferram)
 }
 
-func (s *Sysinfo) GetBufferRAMInMB() uint64 {
+func (s *Sysinfo) GetBufferRAMInMB() float64 {
 	return ConvertBToMB(s.Bufferram)
 }
 
@@ -108,7 +108,7 @@ func (s *Sysinfo) GetSharedRAMInKB() uint64 {
 	return ConvertBToKB(s.Sharedram)
 }
 
-func (s *Sysinfo) GetSharedRAMInMB() uint64 {
+func (s *Sysinfo) GetSharedRAMInMB() float64 {
 	return ConvertBToMB(s.Sharedram)
 }
 
@@ -120,7 +120,7 @@ func (s *Sysinfo) GetTotalSwapInKB() uint64 {
 	return ConvertBToKB(s.Totalswap)
 }
 
-func (s *Sysinfo) GetTotalSwapInMB() uint64 {
+func (s *Sysinfo) GetTotalSwapInMB() float64 {
 	return ConvertBToMB(s.Totalswap)
 }
 
@@ -132,7 +132,7 @@ func (s *Sysinfo) GetFreeSwapInKB() uint64 {
 	return ConvertBToKB(s.Freeswap)
 }
 
-func (s *Sysinfo) GetFreeSwapInMB() uint64 {
+func (s *Sysinfo) GetFreeSwapInMB() float64 {
 	return ConvertBToMB(s.Freeswap)
 }
 
@@ -204,8 +204,8 @@ func ConvertBToKB(size uint64) uint64 {
 	return size / uint64(KB)
 }
 
-func ConvertBToMB(size uint64) uint64 {
-	return size / uint64(MB)
+func ConvertBToMB(size uint64) float64 {
+	return float64(size) / MB
 }
 
 func ConvertBToGB(size uint64) float64 {
