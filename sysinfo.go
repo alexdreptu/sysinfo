@@ -46,6 +46,8 @@ func (s *SysInfo) GetTotalHighRAMInGB() float64 {
 	return float64(s.Totalhigh) / KB
 }
 
+// GetFreeRAMInKB doesn't return the memory available for use
+// by applications it returns the memory not being used for anything
 func (s *SysInfo) GetFreeRAMInKB() uint64 {
 	return s.Freeram / uint64(KB)
 }
