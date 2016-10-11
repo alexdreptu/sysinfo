@@ -30,114 +30,114 @@ func (s *Sysinfo) GetUptime() time.Duration {
 }
 
 func (s *Sysinfo) GetTotalRAMInKB() uint64 {
-	return s.Totalram / uint64(KB)
+	return ConvertBToKB(s.Totalram)
 }
 
 func (s *Sysinfo) GetTotalRAMInMB() uint64 {
-	return s.Totalram / uint64(MB)
+	return ConvertBToMB(s.Totalram)
 }
 
 func (s *Sysinfo) GetTotalRAMInGB() float64 {
-	return float64(s.Totalram) / GB
+	return ConvertBToGB(s.Totalram)
 }
 
 func (s *Sysinfo) GetTotalHighRAMInKB() uint64 {
-	return s.Totalhigh / uint64(KB)
+	return ConvertBToKB(s.Totalhigh)
 }
 
 func (s *Sysinfo) GetTotalHighRAMInMB() uint64 {
-	return s.Totalhigh / uint64(MB)
+	return ConvertBToMB(s.Totalhigh)
 }
 
 func (s *Sysinfo) GetTotalHighRAMInGB() float64 {
-	return float64(s.Totalhigh) / KB
+	return ConvertBToGB(s.Totalhigh)
 }
 
 // GetFreeRAMInKB returns the memory not being used by the system
 func (s *Sysinfo) GetFreeRAMInKB() uint64 {
-	return s.Freeram / uint64(KB)
+	return ConvertBToKB(s.Freeram)
 }
 
 func (s *Sysinfo) GetFreeRAMInMB() uint64 {
-	return s.Freeram / uint64(MB)
+	return ConvertBToMB(s.Freeram)
 }
 
 func (s *Sysinfo) GetFreeRAMInGB() float64 {
-	return float64(s.Freeram) / GB
+	return ConvertBToGB(s.Freeram)
 }
 
 func (s *Sysinfo) GetFreeHighRAMInKB() uint64 {
-	return s.Freehigh / uint64(KB)
+	return ConvertBToKB(s.Freehigh)
 }
 
 func (s *Sysinfo) GetFreeHighRAMInMB() uint64 {
-	return s.Freehigh / uint64(MB)
+	return ConvertBToMB(s.Freehigh)
 }
 
 func (s *Sysinfo) GetFreeHighRAMInGB() float64 {
-	return float64(s.Freehigh) / GB
+	return ConvertBToGB(s.Freehigh)
 }
 
 // GetAvailRAMInKB returns available memory
 // that can be immediately used by processes
 func (s *Sysinfo) GetAvailRAMInKB() uint64 {
-	return s.Availram / uint64(KB)
+	return ConvertBToKB(s.Availram)
 }
 
 func (s *Sysinfo) GetAvailRAMInMB() uint64 {
-	return s.Availram / uint64(MB)
+	return ConvertBToMB(s.Availram)
 }
 
 func (s *Sysinfo) GetAvailRAMInGB() float64 {
-	return float64(s.Availram) / GB
+	return ConvertBToGB(s.Availram)
 }
 
 func (s *Sysinfo) GetBufferRAMInKB() uint64 {
-	return s.Bufferram / uint64(KB)
+	return ConvertBToKB(s.Bufferram)
 }
 
 func (s *Sysinfo) GetBufferRAMInMB() uint64 {
-	return s.Bufferram / uint64(MB)
+	return ConvertBToMB(s.Bufferram)
 }
 
 func (s *Sysinfo) GetBufferRAMInGB() float64 {
-	return float64(s.Bufferram) / GB
+	return ConvertBToGB(s.Bufferram)
 }
 
 func (s *Sysinfo) GetSharedRAMInKB() uint64 {
-	return s.Sharedram / uint64(KB)
+	return ConvertBToKB(s.Sharedram)
 }
 
 func (s *Sysinfo) GetSharedRAMInMB() uint64 {
-	return s.Sharedram / uint64(MB)
+	return ConvertBToMB(s.Sharedram)
 }
 
 func (s *Sysinfo) GetSharedRAMInGB() float64 {
-	return float64(s.Sharedram) / GB
+	return ConvertBToGB(s.Sharedram)
 }
 
 func (s *Sysinfo) GetTotalSwapInKB() uint64 {
-	return s.Totalswap / uint64(KB)
+	return ConvertBToKB(s.Totalswap)
 }
 
 func (s *Sysinfo) GetTotalSwapInMB() uint64 {
-	return s.Totalswap / uint64(MB)
+	return ConvertBToMB(s.Totalswap)
 }
 
 func (s *Sysinfo) GetTotalSwapInGB() float64 {
-	return float64(s.Totalswap) / GB
+	return ConvertBToGB(s.Totalswap)
 }
 
 func (s *Sysinfo) GetFreeSwapInKB() uint64 {
-	return s.Freeswap / uint64(KB)
+	return ConvertBToKB(s.Freeswap)
 }
 
 func (s *Sysinfo) GetFreeSwapInMB() uint64 {
-	return s.Freeswap / uint64(MB)
+	return ConvertBToMB(s.Freeswap)
 }
 
 func (s *Sysinfo) GetFreeSwapInGB() float64 {
-	return float64(s.Freeswap) / GB
+	return ConvertBToGB(s.Freeswap)
 }
 
 func (s *Sysinfo) Get() error {
@@ -198,4 +198,28 @@ func readMeminfo() (uint64, error) {
 	}
 
 	return uint64(availmem), nil
+}
+
+func ConvertBToKB(size uint64) uint64 {
+	return size / uint64(KB)
+}
+
+func ConvertBToMB(size uint64) uint64 {
+	return size / uint64(MB)
+}
+
+func ConvertBToGB(size uint64) float64 {
+	return float64(size) / GB
+}
+
+func ConvertKBToB(size uint64) uint64 {
+	return size * uint64(KB)
+}
+
+func ConvertMBToB(size uint64) uint64 {
+	return size * uint64(MB)
+}
+
+func ConvertGBToB(size float64) float64 {
+	return size * GB
 }
