@@ -34,6 +34,18 @@ func (s *SysInfo) GetTotalRAMInGB() float64 {
 	return float64(s.Totalram) / GB
 }
 
+func (s *SysInfo) GetTotalHighRAMInKB() uint64 {
+	return s.Totalhigh / uint64(KB)
+}
+
+func (s *SysInfo) GetTotalHighRAMInMB() uint64 {
+	return s.Totalhigh / uint64(MB)
+}
+
+func (s *SysInfo) GetTotalHighRAMInGB() float64 {
+	return float64(s.Totalhigh) / KB
+}
+
 func (s *SysInfo) GetFreeRAMInKB() uint64 {
 	return s.Freeram / uint64(KB)
 }
@@ -44,6 +56,66 @@ func (s *SysInfo) GetFreeRAMInMB() uint64 {
 
 func (s *SysInfo) GetFreeRAMInGB() float64 {
 	return float64(s.Freeram) / GB
+}
+
+func (s *SysInfo) GetFreeHighRAMInKB() uint64 {
+	return s.Freehigh / uint64(KB)
+}
+
+func (s *SysInfo) GetFreeHighRAMInMB() uint64 {
+	return s.Freehigh / uint64(MB)
+}
+
+func (s *SysInfo) GetFreeHighRAMInGB() float64 {
+	return float64(s.Freehigh) / GB
+}
+
+func (s *SysInfo) GetBufferRAMInKB() uint64 {
+	return s.Bufferram / uint64(KB)
+}
+
+func (s *SysInfo) GetBufferRAMInMB() uint64 {
+	return s.Bufferram / uint64(MB)
+}
+
+func (s *SysInfo) GetBufferRAMInGB() float64 {
+	return float64(s.Bufferram) / GB
+}
+
+func (s *SysInfo) GetSharedRAMInKB() uint64 {
+	return s.Sharedram / uint64(KB)
+}
+
+func (s *SysInfo) GetSharedRAMInMB() uint64 {
+	return s.Sharedram / uint64(MB)
+}
+
+func (s *SysInfo) GetSharedRAMInGB() float64 {
+	return float64(s.Sharedram) / GB
+}
+
+func (s *SysInfo) GetTotalSwapInKB() uint64 {
+	return s.Totalswap / uint64(KB)
+}
+
+func (s *SysInfo) GetTotalSwapInMB() uint64 {
+	return s.Totalswap / uint64(MB)
+}
+
+func (s *SysInfo) GetTotalSwapInGB() float64 {
+	return float64(s.Totalswap) / GB
+}
+
+func (s *SysInfo) GetFreeSwapInKB() uint64 {
+	return s.Freeswap / uint64(KB)
+}
+
+func (s *SysInfo) GetFreeSwapInMB() uint64 {
+	return s.Freeswap / uint64(MB)
+}
+
+func (s *SysInfo) GetFreeSwapInGB() float64 {
+	return float64(s.Freeswap) / GB
 }
 
 func GetSysInfo() (*SysInfo, error) {
