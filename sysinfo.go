@@ -8,7 +8,10 @@ import (
 	"golang.org/x/sys/unix"
 )
 
-type SysInfo unix.Sysinfo_t
+type SysInfo struct {
+	unix.Sysinfo_t
+	Availram uint64
+}
 
 const (
 	_          = iota
@@ -46,8 +49,7 @@ func (s *SysInfo) GetTotalHighRAMInGB() float64 {
 	return float64(s.Totalhigh) / KB
 }
 
-// GetFreeRAMInKB doesn't return the memory available for use
-// by applications it returns the memory not being used for anything
+// GetFreeRAMInKB returns the memory not being used by the system
 func (s *SysInfo) GetFreeRAMInKB() uint64 {
 	return s.Freeram / uint64(KB)
 }
@@ -70,6 +72,20 @@ func (s *SysInfo) GetFreeHighRAMInMB() uint64 {
 
 func (s *SysInfo) GetFreeHighRAMInGB() float64 {
 	return float64(s.Freehigh) / GB
+}
+
+// GetAvailRAMInKB returns available memory
+// that can be immediately used by processes
+func (s *SysInfo) GetAvailRAMInKB() uint64 {
+	return s.Availram / uint64(KB)
+}
+
+func (s *SysInfo) GetAvailRAMInMB() uint64 {
+	return s.Availram / uint64(MB)
+}
+
+func (s *SysInfo) GetAvailRAMInGB() uint64 {
+	return s.Availram / uint64(GB)
 }
 
 func (s *SysInfo) GetBufferRAMInKB() uint64 {
@@ -120,11 +136,10 @@ func (s *SysInfo) GetFreeSwapInGB() float64 {
 	return float64(s.Freeswap) / GB
 }
 
-func GetSysInfo() (*SysInfo, error) {
-	sys := &SysInfo{}
+func (s *SysInfo) Get() error {
 	info := &unix.Sysinfo_t{}
 	if err := unix.Sysinfo(info); err != nil {
-		return nil, err
+		return err
 	}
 
 	var buf bytes.Buffer
@@ -132,12 +147,15 @@ func GetSysInfo() (*SysInfo, error) {
 	dec := gob.NewDecoder(&buf)
 
 	if err := enc.Encode(info); err != nil {
-		return nil, err
+		return err
 	}
 
-	if err := dec.Decode(&sys); err != nil {
-		return nil, err
+	if err := dec.Decode(&s); err != nil {
+		return err
 	}
 
-	return sys, nil
+	// read available RAM from /proc/meminfo
+	// TODO: implementation - alectic (11 Oct 2016)
+
+	return nil
 }
