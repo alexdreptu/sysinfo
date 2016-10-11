@@ -197,7 +197,7 @@ func readMeminfo() (uint64, error) {
 		return 0, err
 	}
 
-	return uint64(availmem), nil
+	return ConvertKBToB(uint64(availmem)), nil
 }
 
 func ConvertBToKB(size uint64) uint64 {
