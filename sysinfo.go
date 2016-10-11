@@ -84,8 +84,8 @@ func (s *SysInfo) GetAvailRAMInMB() uint64 {
 	return s.Availram / uint64(MB)
 }
 
-func (s *SysInfo) GetAvailRAMInGB() uint64 {
-	return s.Availram / uint64(GB)
+func (s *SysInfo) GetAvailRAMInGB() float64 {
+	return float64(s.Availram) / GB
 }
 
 func (s *SysInfo) GetBufferRAMInKB() uint64 {

@@ -135,7 +135,7 @@ func TestGetAvailRAMInGB(t *testing.T) {
 	if err := sys.Get(); err != nil {
 		t.Fatal(err)
 	}
-	t.Logf("Avail RAM: %d GB\n", sys.GetAvailRAMInGB())
+	t.Logf("Avail RAM: %.1f GB\n", sys.GetAvailRAMInGB())
 }
 
 func TestGetBufferRAMInKB(t *testing.T) {
