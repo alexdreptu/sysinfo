@@ -28,6 +28,6 @@ func ConvertMBToB(size uint64) uint64 {
 	return size * uint64(MB)
 }
 
-func ConvertGBToB(size float64) float64 {
-	return size * GB
+func ConvertGBToB(size float64) uint64 {
+	return uint64(size * GB)
 }
