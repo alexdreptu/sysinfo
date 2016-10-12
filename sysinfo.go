@@ -167,7 +167,7 @@ func (s *Sysinfo) Get() error {
 	return nil
 }
 
-// read /proc/meminfo and return available ram
+// read /proc/meminfo and return available ram in bytes
 func readMeminfo() (uint64, error) {
 	file, err := os.Open("/proc/meminfo")
 	if err != nil {
@@ -198,28 +198,4 @@ func readMeminfo() (uint64, error) {
 	}
 
 	return ConvertKBToB(uint64(availmem)), nil
-}
-
-func ConvertBToKB(size uint64) uint64 {
-	return size / uint64(KB)
-}
-
-func ConvertBToMB(size uint64) float64 {
-	return float64(size) / MB
-}
-
-func ConvertBToGB(size uint64) float64 {
-	return float64(size) / GB
-}
-
-func ConvertKBToB(size uint64) uint64 {
-	return size * uint64(KB)
-}
-
-func ConvertMBToB(size uint64) uint64 {
-	return size * uint64(MB)
-}
-
-func ConvertGBToB(size float64) float64 {
-	return size * GB
 }

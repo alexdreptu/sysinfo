@@ -233,3 +233,15 @@ func TestFreeSwapInGB(t *testing.T) {
 	}
 	t.Logf("Free Swap: %.1f GB\n", sys.GetFreeSwapInGB())
 }
+
+//func TestConvertGBToB(t *testing.T) {
+//if ConvertGBToB(256) != 2.56e+11 {
+//t.Error("not worked")
+//}
+//}
+
+func TestConvertBToKB(t *testing.T) {
+	if ConvertBToKB(262144) != uint64(256*KB) {
+		t.Error("ConvertBToKB(262144) should return 256")
+	}
+}
