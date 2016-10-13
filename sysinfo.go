@@ -176,7 +176,6 @@ func readMeminfo() (uint64, error) {
 	defer file.Close()
 
 	var content string
-
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
 		content = scanner.Text()

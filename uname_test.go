@@ -49,3 +49,11 @@ func TestGetVersion(t *testing.T) {
 	}
 	t.Logf("Version: %s\n", uname.GetVersion())
 }
+
+func TestGetOSName(t *testing.T) {
+	uname := &Uname{}
+	if err := uname.Get(); err != nil {
+		t.Fatal(err)
+	}
+	t.Logf("OS Name: %s\n", uname.GetOSName())
+}

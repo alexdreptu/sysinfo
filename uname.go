@@ -1,13 +1,19 @@
 package sysinfo
 
 import (
+	"bufio"
 	"bytes"
 	"encoding/gob"
+	"os"
+	"strings"
 
 	"golang.org/x/sys/unix"
 )
 
-type Uname unix.Utsname
+type Uname struct {
+	unix.Utsname
+	OSName string // from /etc/os-release
+}
 
 func (u *Uname) GetDomainName() string {
 	return ConvertInt8ArrayToString(u.Domainname)
@@ -33,6 +39,11 @@ func (u *Uname) GetVersion() string {
 	return ConvertInt8ArrayToString(u.Version)
 }
 
+// GetOSName is a conformity method
+func (u *Uname) GetOSName() string {
+	return u.OSName
+}
+
 func (u *Uname) Get() error {
 	var err error
 	utsname := &unix.Utsname{}
@@ -52,5 +63,30 @@ func (u *Uname) Get() error {
 		return err
 	}
 
+	u.OSName, err = readOSName()
+	if err != nil {
+		return err
+	}
+
 	return nil
+}
+
+func readOSName() (string, error) {
+	file, err := os.Open("/etc/os-release")
+	if err != nil {
+		return "", err
+	}
+	defer file.Close()
+
+	var content string
+	scanner := bufio.NewScanner(file)
+	for scanner.Scan() {
+		content = scanner.Text()
+		if strings.Contains(content, "NAME") {
+			content = strings.Trim(strings.Split(content, "=")[1], "\"")
+			break
+		}
+	}
+
+	return content, nil
 }
