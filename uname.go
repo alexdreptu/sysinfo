@@ -45,7 +45,6 @@ func (u *Uname) GetOSName() string {
 }
 
 func (u *Uname) Get() error {
-	var err error
 	utsname := &unix.Utsname{}
 	if err := unix.Uname(utsname); err != nil {
 		return err
@@ -55,14 +54,15 @@ func (u *Uname) Get() error {
 	enc := gob.NewEncoder(&buf)
 	dec := gob.NewDecoder(&buf)
 
-	if err = enc.Encode(utsname); err != nil {
+	if err := enc.Encode(utsname); err != nil {
 		return err
 	}
 
-	if err = dec.Decode(&u); err != nil {
+	if err := dec.Decode(&u); err != nil {
 		return err
 	}
 
+	var err error
 	u.OSName, err = readOSName()
 	if err != nil {
 		return err

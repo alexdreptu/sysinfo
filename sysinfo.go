@@ -1,3 +1,5 @@
+// +build !windows
+
 package sysinfo
 
 import (
@@ -141,9 +143,8 @@ func (s *Sysinfo) GetFreeSwapInGB() float64 {
 }
 
 func (s *Sysinfo) Get() error {
-	var err error
 	info := &unix.Sysinfo_t{}
-	if err = unix.Sysinfo(info); err != nil {
+	if err := unix.Sysinfo(info); err != nil {
 		return err
 	}
 
@@ -151,14 +152,15 @@ func (s *Sysinfo) Get() error {
 	enc := gob.NewEncoder(&buf)
 	dec := gob.NewDecoder(&buf)
 
-	if err = enc.Encode(info); err != nil {
+	if err := enc.Encode(info); err != nil {
 		return err
 	}
 
-	if err = dec.Decode(&s); err != nil {
+	if err := dec.Decode(&s); err != nil {
 		return err
 	}
 
+	var err error
 	s.Availram, err = readMeminfo()
 	if err != nil {
 		return err
