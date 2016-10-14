@@ -2,8 +2,6 @@ package sysinfo
 
 import (
 	"bufio"
-	"bytes"
-	"encoding/gob"
 	"os"
 	"strconv"
 	"strings"
@@ -13,8 +11,17 @@ import (
 )
 
 type Sysinfo struct {
-	unix.Sysinfo_t
-	Availram uint64
+	Uptime       int64
+	Procs        uint16
+	TotalRAM     uint64
+	TotalHighRAM uint64
+	FreeRAM      uint64
+	FreeHighRAM  uint64
+	AvailRAM     uint64
+	BufferRAM    uint64
+	SharedRAM    uint64
+	TotalSwap    uint64
+	FreeSwap     uint64
 }
 
 const (
@@ -29,137 +36,136 @@ func (s *Sysinfo) GetUptime() time.Duration {
 	return time.Duration(s.Uptime) * time.Second
 }
 
-func (s *Sysinfo) GetTotalRAMInKB() uint64 {
-	return ConvertBToKB(s.Totalram)
+func (s *Sysinfo) TotalRAMInKB() uint64 {
+	return ConvertBToKB(s.TotalRAM)
 }
 
-func (s *Sysinfo) GetTotalRAMInMB() float64 {
-	return ConvertBToMB(s.Totalram)
+func (s *Sysinfo) TotalRAMInMB() float64 {
+	return ConvertBToMB(s.TotalRAM)
 }
 
-func (s *Sysinfo) GetTotalRAMInGB() float64 {
-	return ConvertBToGB(s.Totalram)
+func (s *Sysinfo) TotalRAMInGB() float64 {
+	return ConvertBToGB(s.TotalRAM)
 }
 
-func (s *Sysinfo) GetTotalHighRAMInKB() uint64 {
-	return ConvertBToKB(s.Totalhigh)
+func (s *Sysinfo) TotalHighRAMInKB() uint64 {
+	return ConvertBToKB(s.TotalHighRAM)
 }
 
-func (s *Sysinfo) GetTotalHighRAMInMB() float64 {
-	return ConvertBToMB(s.Totalhigh)
+func (s *Sysinfo) TotalHighRAMInMB() float64 {
+	return ConvertBToMB(s.TotalHighRAM)
 }
 
-func (s *Sysinfo) GetTotalHighRAMInGB() float64 {
-	return ConvertBToGB(s.Totalhigh)
+func (s *Sysinfo) TotalHighRAMInGB() float64 {
+	return ConvertBToGB(s.TotalHighRAM)
 }
 
 // GetFreeRAMInKB returns the memory not being used by the system
-func (s *Sysinfo) GetFreeRAMInKB() uint64 {
-	return ConvertBToKB(s.Freeram)
+func (s *Sysinfo) FreeRAMInKB() uint64 {
+	return ConvertBToKB(s.FreeRAM)
 }
 
-func (s *Sysinfo) GetFreeRAMInMB() float64 {
-	return ConvertBToMB(s.Freeram)
+func (s *Sysinfo) FreeRAMInMB() float64 {
+	return ConvertBToMB(s.FreeRAM)
 }
 
-func (s *Sysinfo) GetFreeRAMInGB() float64 {
-	return ConvertBToGB(s.Freeram)
+func (s *Sysinfo) FreeRAMInGB() float64 {
+	return ConvertBToGB(s.FreeRAM)
 }
 
-func (s *Sysinfo) GetFreeHighRAMInKB() uint64 {
-	return ConvertBToKB(s.Freehigh)
+func (s *Sysinfo) FreeHighRAMInKB() uint64 {
+	return ConvertBToKB(s.FreeHighRAM)
 }
 
-func (s *Sysinfo) GetFreeHighRAMInMB() float64 {
-	return ConvertBToMB(s.Freehigh)
+func (s *Sysinfo) FreeHighRAMInMB() float64 {
+	return ConvertBToMB(s.FreeHighRAM)
 }
 
-func (s *Sysinfo) GetFreeHighRAMInGB() float64 {
-	return ConvertBToGB(s.Freehigh)
+func (s *Sysinfo) FreeHighRAMInGB() float64 {
+	return ConvertBToGB(s.FreeHighRAM)
 }
 
 // GetAvailRAMInKB returns available memory
 // that can be immediately used by processes
-func (s *Sysinfo) GetAvailRAMInKB() uint64 {
-	return ConvertBToKB(s.Availram)
+func (s *Sysinfo) AvailRAMInKB() uint64 {
+	return ConvertBToKB(s.AvailRAM)
 }
 
-func (s *Sysinfo) GetAvailRAMInMB() float64 {
-	return ConvertBToMB(s.Availram)
+func (s *Sysinfo) AvailRAMInMB() float64 {
+	return ConvertBToMB(s.AvailRAM)
 }
 
-func (s *Sysinfo) GetAvailRAMInGB() float64 {
-	return ConvertBToGB(s.Availram)
+func (s *Sysinfo) AvailRAMInGB() float64 {
+	return ConvertBToGB(s.AvailRAM)
 }
 
-func (s *Sysinfo) GetBufferRAMInKB() uint64 {
-	return ConvertBToKB(s.Bufferram)
+func (s *Sysinfo) BufferRAMInKB() uint64 {
+	return ConvertBToKB(s.BufferRAM)
 }
 
-func (s *Sysinfo) GetBufferRAMInMB() float64 {
-	return ConvertBToMB(s.Bufferram)
+func (s *Sysinfo) BufferRAMInMB() float64 {
+	return ConvertBToMB(s.BufferRAM)
 }
 
-func (s *Sysinfo) GetBufferRAMInGB() float64 {
-	return ConvertBToGB(s.Bufferram)
+func (s *Sysinfo) BufferRAMInGB() float64 {
+	return ConvertBToGB(s.BufferRAM)
 }
 
-func (s *Sysinfo) GetSharedRAMInKB() uint64 {
-	return ConvertBToKB(s.Sharedram)
+func (s *Sysinfo) SharedRAMInKB() uint64 {
+	return ConvertBToKB(s.SharedRAM)
 }
 
-func (s *Sysinfo) GetSharedRAMInMB() float64 {
-	return ConvertBToMB(s.Sharedram)
+func (s *Sysinfo) SharedRAMInMB() float64 {
+	return ConvertBToMB(s.SharedRAM)
 }
 
-func (s *Sysinfo) GetSharedRAMInGB() float64 {
-	return ConvertBToGB(s.Sharedram)
+func (s *Sysinfo) SharedRAMInGB() float64 {
+	return ConvertBToGB(s.SharedRAM)
 }
 
-func (s *Sysinfo) GetTotalSwapInKB() uint64 {
-	return ConvertBToKB(s.Totalswap)
+func (s *Sysinfo) TotalSwapInKB() uint64 {
+	return ConvertBToKB(s.TotalSwap)
 }
 
-func (s *Sysinfo) GetTotalSwapInMB() float64 {
-	return ConvertBToMB(s.Totalswap)
+func (s *Sysinfo) TotalSwapInMB() float64 {
+	return ConvertBToMB(s.TotalSwap)
 }
 
-func (s *Sysinfo) GetTotalSwapInGB() float64 {
-	return ConvertBToGB(s.Totalswap)
+func (s *Sysinfo) TotalSwapInGB() float64 {
+	return ConvertBToGB(s.TotalSwap)
 }
 
-func (s *Sysinfo) GetFreeSwapInKB() uint64 {
-	return ConvertBToKB(s.Freeswap)
+func (s *Sysinfo) FreeSwapInKB() uint64 {
+	return ConvertBToKB(s.FreeSwap)
 }
 
-func (s *Sysinfo) GetFreeSwapInMB() float64 {
-	return ConvertBToMB(s.Freeswap)
+func (s *Sysinfo) FreeSwapInMB() float64 {
+	return ConvertBToMB(s.FreeSwap)
 }
 
-func (s *Sysinfo) GetFreeSwapInGB() float64 {
-	return ConvertBToGB(s.Freeswap)
+func (s *Sysinfo) FreeSwapInGB() float64 {
+	return ConvertBToGB(s.FreeSwap)
 }
 
 func (s *Sysinfo) Get() error {
-	info := &unix.Sysinfo_t{}
-	if err := unix.Sysinfo(info); err != nil {
+	sys := &unix.Sysinfo_t{}
+	if err := unix.Sysinfo(sys); err != nil {
 		return err
 	}
 
-	var buf bytes.Buffer
-	enc := gob.NewEncoder(&buf)
-	dec := gob.NewDecoder(&buf)
-
-	if err := enc.Encode(info); err != nil {
-		return err
-	}
-
-	if err := dec.Decode(&s); err != nil {
-		return err
-	}
+	s.Uptime = sys.Uptime
+	s.Procs = sys.Procs
+	s.TotalRAM = sys.Totalram
+	s.TotalHighRAM = sys.Totalhigh
+	s.FreeRAM = sys.Freeram
+	s.FreeHighRAM = sys.Freehigh
+	s.BufferRAM = sys.Bufferram
+	s.SharedRAM = sys.Sharedram
+	s.TotalSwap = sys.Totalswap
+	s.FreeSwap = sys.Freeswap
 
 	var err error
-	s.Availram, err = readMeminfo()
+	s.AvailRAM, err = readMeminfo()
 	if err != nil {
 		return err
 	}

@@ -23,7 +23,7 @@ func TestGetTotalRAMInKB(t *testing.T) {
 	if err := sys.Get(); err != nil {
 		t.Fatal(err)
 	}
-	t.Logf("Total RAM: %d KB\n", sys.GetTotalRAMInKB())
+	t.Logf("Total RAM: %d KB\n", sys.TotalRAMInKB())
 }
 
 func TestGetTotalRAMInMB(t *testing.T) {
@@ -31,7 +31,7 @@ func TestGetTotalRAMInMB(t *testing.T) {
 	if err := sys.Get(); err != nil {
 		t.Fatal(err)
 	}
-	t.Logf("Total RAM: %.1f MB\n", sys.GetTotalRAMInMB())
+	t.Logf("Total RAM: %.1f MB\n", sys.TotalRAMInMB())
 }
 
 func TestGetTotalRAMInGB(t *testing.T) {
@@ -39,7 +39,7 @@ func TestGetTotalRAMInGB(t *testing.T) {
 	if err := sys.Get(); err != nil {
 		t.Fatal(err)
 	}
-	t.Logf("Total RAM: %.1f GB\n", sys.GetTotalRAMInGB())
+	t.Logf("Total RAM: %.1f GB\n", sys.TotalRAMInGB())
 }
 
 func TestGetTotalHighRAMInKB(t *testing.T) {
@@ -47,7 +47,7 @@ func TestGetTotalHighRAMInKB(t *testing.T) {
 	if err := sys.Get(); err != nil {
 		t.Fatal(err)
 	}
-	t.Logf("Total High RAM: %d KB\n", sys.GetTotalHighRAMInKB())
+	t.Logf("Total High RAM: %d KB\n", sys.TotalHighRAMInKB())
 }
 
 func TestGetTotalHighRAMInMB(t *testing.T) {
@@ -55,7 +55,7 @@ func TestGetTotalHighRAMInMB(t *testing.T) {
 	if err := sys.Get(); err != nil {
 		t.Fatal(err)
 	}
-	t.Logf("Total High RAM: %.1f MB\n", sys.GetTotalHighRAMInMB())
+	t.Logf("Total High RAM: %.1f MB\n", sys.TotalHighRAMInMB())
 }
 
 func TestGetTotalHighRAMInGB(t *testing.T) {
@@ -63,7 +63,7 @@ func TestGetTotalHighRAMInGB(t *testing.T) {
 	if err := sys.Get(); err != nil {
 		t.Fatal(err)
 	}
-	t.Logf("Total High RAM: %.1f GB\n", sys.GetTotalHighRAMInGB())
+	t.Logf("Total High RAM: %.1f GB\n", sys.TotalHighRAMInGB())
 }
 
 func TestGetFreeRAMInKB(t *testing.T) {
@@ -71,7 +71,7 @@ func TestGetFreeRAMInKB(t *testing.T) {
 	if err := sys.Get(); err != nil {
 		t.Fatal(err)
 	}
-	t.Logf("Free RAM: %d KB\n", sys.GetFreeRAMInKB())
+	t.Logf("Free RAM: %d KB\n", sys.FreeRAMInKB())
 }
 
 func TestGetFreeRAMInMB(t *testing.T) {
@@ -79,7 +79,7 @@ func TestGetFreeRAMInMB(t *testing.T) {
 	if err := sys.Get(); err != nil {
 		t.Fatal(err)
 	}
-	t.Logf("Free RAM: %.1f MB\n", sys.GetFreeRAMInMB())
+	t.Logf("Free RAM: %.1f MB\n", sys.FreeRAMInMB())
 }
 
 func TestGetFreeRAMInGB(t *testing.T) {
@@ -87,7 +87,7 @@ func TestGetFreeRAMInGB(t *testing.T) {
 	if err := sys.Get(); err != nil {
 		t.Fatal(err)
 	}
-	t.Logf("Free RAM: %.1f GB\n", sys.GetFreeRAMInGB())
+	t.Logf("Free RAM: %.1f GB\n", sys.FreeRAMInGB())
 }
 
 func TestGetFreeHighRAMInKB(t *testing.T) {
@@ -95,7 +95,7 @@ func TestGetFreeHighRAMInKB(t *testing.T) {
 	if err := sys.Get(); err != nil {
 		t.Fatal(err)
 	}
-	t.Logf("Free High RAM: %d KB\n", sys.GetFreeHighRAMInKB())
+	t.Logf("Free High RAM: %d KB\n", sys.FreeHighRAMInKB())
 }
 
 func TestGetFreeHighRAMInMB(t *testing.T) {
@@ -103,7 +103,7 @@ func TestGetFreeHighRAMInMB(t *testing.T) {
 	if err := sys.Get(); err != nil {
 		t.Fatal(err)
 	}
-	t.Logf("Free High RAM: %.1f MB\n", sys.GetFreeHighRAMInMB())
+	t.Logf("Free High RAM: %.1f MB\n", sys.FreeHighRAMInMB())
 }
 
 func TestGetFreeHighRAMInGB(t *testing.T) {
@@ -111,7 +111,7 @@ func TestGetFreeHighRAMInGB(t *testing.T) {
 	if err := sys.Get(); err != nil {
 		t.Fatal(err)
 	}
-	t.Logf("Free High RAM: %.1f GB\n", sys.GetFreeHighRAMInGB())
+	t.Logf("Free High RAM: %.1f GB\n", sys.FreeHighRAMInGB())
 }
 
 func TestGetAvailRAMInKB(t *testing.T) {
@@ -119,7 +119,7 @@ func TestGetAvailRAMInKB(t *testing.T) {
 	if err := sys.Get(); err != nil {
 		t.Fatal(err)
 	}
-	t.Logf("Avail RAM: %d KB\n", sys.GetAvailRAMInKB())
+	t.Logf("Avail RAM: %d KB\n", sys.AvailRAMInKB())
 }
 
 func TestGetAvailRAMInMB(t *testing.T) {
@@ -127,7 +127,7 @@ func TestGetAvailRAMInMB(t *testing.T) {
 	if err := sys.Get(); err != nil {
 		t.Fatal(err)
 	}
-	t.Logf("Avail RAM: %.1f MB\n", sys.GetAvailRAMInMB())
+	t.Logf("Avail RAM: %.1f MB\n", sys.AvailRAMInMB())
 }
 
 func TestGetAvailRAMInGB(t *testing.T) {
@@ -135,7 +135,7 @@ func TestGetAvailRAMInGB(t *testing.T) {
 	if err := sys.Get(); err != nil {
 		t.Fatal(err)
 	}
-	t.Logf("Avail RAM: %.1f GB\n", sys.GetAvailRAMInGB())
+	t.Logf("Avail RAM: %.1f GB\n", sys.AvailRAMInGB())
 }
 
 func TestGetBufferRAMInKB(t *testing.T) {
@@ -143,7 +143,7 @@ func TestGetBufferRAMInKB(t *testing.T) {
 	if err := sys.Get(); err != nil {
 		t.Fatal(err)
 	}
-	t.Logf("Buffer RAM: %d KB\n", sys.GetBufferRAMInKB())
+	t.Logf("Buffer RAM: %d KB\n", sys.BufferRAMInKB())
 }
 
 func TestGetBufferRAMInMB(t *testing.T) {
@@ -151,7 +151,7 @@ func TestGetBufferRAMInMB(t *testing.T) {
 	if err := sys.Get(); err != nil {
 		t.Fatal(err)
 	}
-	t.Logf("Buffer RAM: %.1f MB\n", sys.GetBufferRAMInMB())
+	t.Logf("Buffer RAM: %.1f MB\n", sys.BufferRAMInMB())
 }
 
 func TestGetBufferRAMInGB(t *testing.T) {
@@ -159,7 +159,7 @@ func TestGetBufferRAMInGB(t *testing.T) {
 	if err := sys.Get(); err != nil {
 		t.Fatal(err)
 	}
-	t.Logf("Buffer RAM: %.1f GB\n", sys.GetBufferRAMInGB())
+	t.Logf("Buffer RAM: %.1f GB\n", sys.BufferRAMInGB())
 }
 
 func TestSharedRAMInKB(t *testing.T) {
@@ -167,7 +167,7 @@ func TestSharedRAMInKB(t *testing.T) {
 	if err := sys.Get(); err != nil {
 		t.Fatal(err)
 	}
-	t.Logf("Shared RAM: %d KB\n", sys.GetSharedRAMInKB())
+	t.Logf("Shared RAM: %d KB\n", sys.SharedRAMInKB())
 }
 
 func TestSharedRAMInMB(t *testing.T) {
@@ -175,7 +175,7 @@ func TestSharedRAMInMB(t *testing.T) {
 	if err := sys.Get(); err != nil {
 		t.Fatal(err)
 	}
-	t.Logf("Shared RAM: %.1f MB\n", sys.GetSharedRAMInMB())
+	t.Logf("Shared RAM: %.1f MB\n", sys.SharedRAMInMB())
 }
 
 func TestSharedRAMInGB(t *testing.T) {
@@ -183,7 +183,7 @@ func TestSharedRAMInGB(t *testing.T) {
 	if err := sys.Get(); err != nil {
 		t.Fatal(err)
 	}
-	t.Logf("Shared RAM: %.1f GB\n", sys.GetSharedRAMInGB())
+	t.Logf("Shared RAM: %.1f GB\n", sys.SharedRAMInGB())
 }
 
 func TestTotalSwapInKB(t *testing.T) {
@@ -191,7 +191,7 @@ func TestTotalSwapInKB(t *testing.T) {
 	if err := sys.Get(); err != nil {
 		t.Fatal(err)
 	}
-	t.Logf("Total Swap: %d KB\n", sys.GetTotalSwapInKB())
+	t.Logf("Total Swap: %d KB\n", sys.TotalSwapInKB())
 }
 
 func TestTotalSwapInMB(t *testing.T) {
@@ -199,7 +199,7 @@ func TestTotalSwapInMB(t *testing.T) {
 	if err := sys.Get(); err != nil {
 		t.Fatal(err)
 	}
-	t.Logf("Total Swap: %.1f MB\n", sys.GetTotalSwapInMB())
+	t.Logf("Total Swap: %.1f MB\n", sys.TotalSwapInMB())
 }
 
 func TestTotalSwapInGB(t *testing.T) {
@@ -207,7 +207,7 @@ func TestTotalSwapInGB(t *testing.T) {
 	if err := sys.Get(); err != nil {
 		t.Fatal(err)
 	}
-	t.Logf("Total Swap: %.1f GB\n", sys.GetTotalSwapInGB())
+	t.Logf("Total Swap: %.1f GB\n", sys.TotalSwapInGB())
 }
 
 func TestFreeSwapInKB(t *testing.T) {
@@ -215,7 +215,7 @@ func TestFreeSwapInKB(t *testing.T) {
 	if err := sys.Get(); err != nil {
 		t.Fatal(err)
 	}
-	t.Logf("Free Swap: %d KB\n", sys.GetFreeSwapInKB())
+	t.Logf("Free Swap: %d KB\n", sys.FreeSwapInKB())
 }
 
 func TestFreeSwapInMB(t *testing.T) {
@@ -223,7 +223,7 @@ func TestFreeSwapInMB(t *testing.T) {
 	if err := sys.Get(); err != nil {
 		t.Fatal(err)
 	}
-	t.Logf("Free Swap: %.1f MB\n", sys.GetFreeSwapInMB())
+	t.Logf("Free Swap: %.1f MB\n", sys.FreeSwapInMB())
 }
 
 func TestFreeSwapInGB(t *testing.T) {
@@ -231,5 +231,5 @@ func TestFreeSwapInGB(t *testing.T) {
 	if err := sys.Get(); err != nil {
 		t.Fatal(err)
 	}
-	t.Logf("Free Swap: %.1f GB\n", sys.GetFreeSwapInGB())
+	t.Logf("Free Swap: %.1f GB\n", sys.FreeSwapInGB())
 }
