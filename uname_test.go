@@ -2,58 +2,58 @@ package sysinfo
 
 import "testing"
 
-func TestGetDomainName(t *testing.T) {
+func TestDomainName(t *testing.T) {
 	uname := &Uname{}
 	if err := uname.Get(); err != nil {
 		t.Fatal(err)
 	}
-	t.Logf("Domainname: %s\n", uname.GetDomainName())
+	t.Logf("Domainname: %s\n", uname.DomainName)
 }
 
-func TestGetMachine(t *testing.T) {
+func TestMachine(t *testing.T) {
 	uname := &Uname{}
 	if err := uname.Get(); err != nil {
 		t.Fatal(err)
 	}
-	t.Logf("Machine: %s\n", uname.GetMachine())
+	t.Logf("Machine: %s\n", uname.Machine)
 }
 
-func TestGetNodeName(t *testing.T) {
+func TestNodeName(t *testing.T) {
 	uname := &Uname{}
 	if err := uname.Get(); err != nil {
 		t.Fatal(err)
 	}
-	t.Logf("Nodename: %s\n", uname.GetNodeName())
+	t.Logf("Nodename: %s\n", uname.NodeName)
 }
 
-func TestGetRelease(t *testing.T) {
+func TestRelease(t *testing.T) {
 	uname := &Uname{}
 	if err := uname.Get(); err != nil {
 		t.Fatal(err)
 	}
-	t.Logf("Release: %s\n", uname.GetRelease())
+	t.Logf("Release: %s\n", uname.Release)
 }
 
-func TestGetSysName(t *testing.T) {
+func TestSysName(t *testing.T) {
 	uname := &Uname{}
 	if err := uname.Get(); err != nil {
 		t.Fatal(err)
 	}
-	t.Logf("Sysname: %s\n", uname.GetSysName())
+	t.Logf("Sysname: %s\n", uname.SysName)
 }
 
-func TestGetVersion(t *testing.T) {
+func TestVersion(t *testing.T) {
 	uname := &Uname{}
 	if err := uname.Get(); err != nil {
 		t.Fatal(err)
 	}
-	t.Logf("Version: %s\n", uname.GetVersion())
+	t.Logf("Version: %s\n", uname.Version)
 }
 
-func TestGetOSName(t *testing.T) {
+func TestOSName(t *testing.T) {
 	uname := &Uname{}
 	if err := uname.Get(); err != nil {
 		t.Fatal(err)
 	}
-	t.Logf("OS Name: %s\n", uname.GetOSName())
+	t.Logf("OS Name: %s\n", uname.OSName)
 }
