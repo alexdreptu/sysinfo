@@ -2,8 +2,6 @@ package sysinfo
 
 import (
 	"bufio"
-	"bytes"
-	"encoding/gob"
 	"os"
 	"strings"
 
@@ -11,37 +9,13 @@ import (
 )
 
 type Uname struct {
-	unix.Utsname
-	OSName string // from /etc/os-release
-}
-
-func (u *Uname) GetDomainName() string {
-	return ConvertInt8ArrayToString(u.Domainname)
-}
-
-func (u *Uname) GetMachine() string {
-	return ConvertInt8ArrayToString(u.Machine)
-}
-
-func (u *Uname) GetNodeName() string {
-	return ConvertInt8ArrayToString(u.Nodename)
-}
-
-func (u *Uname) GetRelease() string {
-	return ConvertInt8ArrayToString(u.Release)
-}
-
-func (u *Uname) GetSysName() string {
-	return ConvertInt8ArrayToString(u.Sysname)
-}
-
-func (u *Uname) GetVersion() string {
-	return ConvertInt8ArrayToString(u.Version)
-}
-
-// GetOSName is a conformity method
-func (u *Uname) GetOSName() string {
-	return u.OSName
+	DomainName string
+	Machine    string
+	NodeName   string
+	Release    string
+	SysName    string
+	Version    string
+	OSName     string // from /etc/os-release
 }
 
 func (u *Uname) Get() error {
@@ -50,17 +24,12 @@ func (u *Uname) Get() error {
 		return err
 	}
 
-	var buf bytes.Buffer
-	enc := gob.NewEncoder(&buf)
-	dec := gob.NewDecoder(&buf)
-
-	if err := enc.Encode(utsname); err != nil {
-		return err
-	}
-
-	if err := dec.Decode(&u); err != nil {
-		return err
-	}
+	u.DomainName = ConvertInt8ArrayToString(utsname.Domainname)
+	u.Machine = ConvertInt8ArrayToString(utsname.Machine)
+	u.NodeName = ConvertInt8ArrayToString(utsname.Nodename)
+	u.Release = ConvertInt8ArrayToString(utsname.Release)
+	u.SysName = ConvertInt8ArrayToString(utsname.Sysname)
+	u.Version = ConvertInt8ArrayToString(utsname.Version)
 
 	var err error
 	u.OSName, err = readOSName()
