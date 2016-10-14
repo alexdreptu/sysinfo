@@ -1,14 +1,8 @@
 package sysinfo
 
-import (
-	"bytes"
-	"encoding/gob"
-
-	"golang.org/x/sys/unix"
-)
+import "golang.org/x/sys/unix"
 
 type FS struct {
-	unix.Statfs_t
 	Total uint64
 	Free  uint64
 	Used  uint64
@@ -56,20 +50,8 @@ func (f *FS) Get(path string) error {
 		return err
 	}
 
-	var buf bytes.Buffer
-	enc := gob.NewEncoder(&buf)
-	dec := gob.NewDecoder(&buf)
-
-	if err := enc.Encode(statfs); err != nil {
-		return err
-	}
-
-	if err := dec.Decode(&f); err != nil {
-		return err
-	}
-
-	f.Total = uint64(f.Bsize) * f.Blocks
-	f.Free = uint64(f.Bsize) * f.Bavail
+	f.Total = uint64(statfs.Bsize) * statfs.Blocks
+	f.Free = uint64(statfs.Bsize) * statfs.Bavail
 	f.Used = f.Total - f.Free
 
 	return nil
