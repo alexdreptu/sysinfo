@@ -8,39 +8,39 @@ type FS struct {
 	Used  uint64
 }
 
-func (f *FS) GetTotalSizeInKB() uint64 {
+func (f *FS) TotalSizeInKB() uint64 {
 	return ConvertBToKB(f.Total)
 }
 
-func (f *FS) GetTotalSizeInMB() float64 {
+func (f *FS) TotalSizeInMB() float64 {
 	return ConvertBToMB(f.Total)
 }
 
-func (f *FS) GetTotalSizeInGB() float64 {
+func (f *FS) TotalSizeInGB() float64 {
 	return ConvertBToGB(f.Total)
 }
 
-func (f *FS) GetFreeSpaceInKB() uint64 {
+func (f *FS) FreeSpaceInKB() uint64 {
 	return ConvertBToKB(f.Free)
 }
 
-func (f *FS) GetFreeSpaceInMB() float64 {
+func (f *FS) FreeSpaceInMB() float64 {
 	return ConvertBToMB(f.Free)
 }
 
-func (f *FS) GetFreeSpaceInGB() float64 {
+func (f *FS) FreeSpaceInGB() float64 {
 	return ConvertBToGB(f.Free)
 }
 
-func (f *FS) GetUsedSpaceInKB() uint64 {
+func (f *FS) UsedSpaceInKB() uint64 {
 	return ConvertBToKB(f.Used)
 }
 
-func (f *FS) GetUsedSpaceInMB() float64 {
+func (f *FS) UsedSpaceInMB() float64 {
 	return ConvertBToMB(f.Used)
 }
 
-func (f *FS) GetUsedSpaceInGB() float64 {
+func (f *FS) UsedSpaceInGB() float64 {
 	return ConvertBToGB(f.Used)
 }
 
