@@ -52,7 +52,8 @@ func (f *FSInfo) Get(path string) error {
 
 	f.Total = uint64(statfs.Bsize) * statfs.Blocks
 	f.Free = uint64(statfs.Bsize) * statfs.Bavail
-	f.Used = (uint64(statfs.Bsize) * statfs.Blocks) - (uint64(statfs.Bsize) * statfs.Bfree)
+	f.Used = (uint64(statfs.Bsize) * statfs.Blocks) -
+		(uint64(statfs.Bsize) * statfs.Bfree)
 
 	return nil
 }
