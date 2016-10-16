@@ -24,8 +24,8 @@ func ConvertKBToB(size uint64) uint64 {
 	return size * uint64(KB)
 }
 
-func ConvertMBToB(size uint64) uint64 {
-	return size * uint64(MB)
+func ConvertMBToB(size float64) uint64 {
+	return uint64(size * MB)
 }
 
 func ConvertGBToB(size float64) uint64 {
