@@ -58,4 +58,6 @@ func (f *FSInfo) Get(path string) error {
 	return nil
 }
 
-func NewFS() *FSInfo { return &FSInfo{} }
+func NewFS() *FSInfo {
+	return &FSInfo{}
+}

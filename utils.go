@@ -1,5 +1,12 @@
 package sysinfo
 
+const (
+	_          = iota
+	KB float64 = 1 << (10 * iota)
+	MB
+	GB
+)
+
 func ConvertInt8ArrayToString(s [65]int8) string {
 	b := make([]byte, len(s))
 	for i, v := range s {

@@ -60,4 +60,6 @@ func readOSName() (string, error) {
 	return content, nil
 }
 
-func NewNode() *NodeInfo { return &NodeInfo{} }
+func NewNode() *NodeInfo {
+	return &NodeInfo{}
+}

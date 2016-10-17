@@ -5,13 +5,11 @@ import (
 	"os"
 	"strconv"
 	"strings"
-	"time"
 
 	"golang.org/x/sys/unix"
 )
 
 type MemInfo struct {
-	Uptime       int64
 	Procs        uint16
 	TotalMem     uint64
 	TotalHighMem uint64
@@ -27,18 +25,6 @@ type MemInfo struct {
 	FreeSwap     uint64
 	UsedSwap     uint64
 	TotalUsed    uint64
-}
-
-const (
-	_          = iota
-	KB float64 = 1 << (10 * iota)
-	MB
-	GB
-)
-
-// GetUptime returns uptime in human readable form
-func (s *MemInfo) GetUptime() time.Duration {
-	return time.Duration(s.Uptime) * time.Second
 }
 
 func (s *MemInfo) TotalMemInKB() uint64 {
@@ -206,7 +192,6 @@ func (s *MemInfo) Get() error {
 		return err
 	}
 
-	s.Uptime = si.Uptime
 	s.Procs = si.Procs
 	s.TotalMem = si.Totalram
 	s.TotalHighMem = si.Totalhigh
@@ -278,4 +263,6 @@ func readMeminfo() (uint64, uint64, error) {
 	return availMem, cachedMem, nil
 }
 
-func NewMem() *MemInfo { return &MemInfo{} }
+func NewMem() *MemInfo {
+	return &MemInfo{}
+}
