@@ -224,35 +224,34 @@ func readMeminfo() (uint64, uint64, error) {
 	}
 	defer file.Close()
 
-	var line string
 	var availMem uint64
 	var cachedMem uint64
-	var availStatus bool
-	var cachedStatus bool
 	scanner := bufio.NewScanner(file)
 
 	for scanner.Scan() {
-		line = scanner.Text()
-		if strings.Contains(line, "MemAvailable") {
-			m, err := strconv.Atoi(strings.Fields(line)[1])
+		line := scanner.Text()
+		if line == "" {
+			continue
+		}
+
+		fields := strings.Split(line, ":")
+		key := strings.TrimSpace(fields[0])
+		value := strings.TrimSpace(strings.Fields(fields[1])[0])
+
+		switch key {
+		case "MemAvailable":
+			n, err := strconv.Atoi(value)
 			if err != nil {
 				return 0, 0, err
 			}
-			availMem = convertKBToB(uint64(m))
-			availStatus = true
-		}
+			availMem = convertKBToB(uint64(n))
 
-		if strings.Contains(line, "Cached") {
-			c, err := strconv.Atoi(strings.Fields(line)[1])
+		case "Cached":
+			n, err := strconv.Atoi(value)
 			if err != nil {
 				return 0, 0, err
 			}
-			cachedMem = convertKBToB(uint64(c))
-			cachedStatus = true
-		}
-
-		if availStatus && cachedStatus {
-			break
+			cachedMem = convertKBToB(uint64(n))
 		}
 	}
 
