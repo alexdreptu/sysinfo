@@ -9,39 +9,39 @@ type FSInfo struct {
 }
 
 func (f *FSInfo) TotalSizeInKB() uint64 {
-	return ConvertBToKB(f.Total)
+	return convertBToKB(f.Total)
 }
 
 func (f *FSInfo) TotalSizeInMB() float64 {
-	return ConvertBToMB(f.Total)
+	return convertBToMB(f.Total)
 }
 
 func (f *FSInfo) TotalSizeInGB() float64 {
-	return ConvertBToGB(f.Total)
+	return convertBToGB(f.Total)
 }
 
 func (f *FSInfo) FreeSpaceInKB() uint64 {
-	return ConvertBToKB(f.Free)
+	return convertBToKB(f.Free)
 }
 
 func (f *FSInfo) FreeSpaceInMB() float64 {
-	return ConvertBToMB(f.Free)
+	return convertBToMB(f.Free)
 }
 
 func (f *FSInfo) FreeSpaceInGB() float64 {
-	return ConvertBToGB(f.Free)
+	return convertBToGB(f.Free)
 }
 
 func (f *FSInfo) UsedSpaceInKB() uint64 {
-	return ConvertBToKB(f.Used)
+	return convertBToKB(f.Used)
 }
 
 func (f *FSInfo) UsedSpaceInMB() float64 {
-	return ConvertBToMB(f.Used)
+	return convertBToMB(f.Used)
 }
 
 func (f *FSInfo) UsedSpaceInGB() float64 {
-	return ConvertBToGB(f.Used)
+	return convertBToGB(f.Used)
 }
 
 func (f *FSInfo) Get(path string) error {

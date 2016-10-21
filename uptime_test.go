@@ -9,7 +9,7 @@ func TestDisplayUptimeInfo(t *testing.T) {
 	}
 
 	t.Logf("Uptime: %s\n", uptime.GetUptime())
-	t.Logf("Uptime: %.1f seconds\n", uptime.GetUptime().Seconds())
+	t.Logf("Uptime: %.0f seconds\n", uptime.GetUptime().Seconds())
 	t.Logf("Uptime: %.1f minutes\n", uptime.GetUptime().Minutes())
 	t.Logf("Uptime: %.1f hours\n", uptime.GetUptime().Hours())
 }

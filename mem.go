@@ -28,162 +28,162 @@ type MemInfo struct {
 }
 
 func (s *MemInfo) TotalMemInKB() uint64 {
-	return ConvertBToKB(s.TotalMem)
+	return convertBToKB(s.TotalMem)
 }
 
 func (s *MemInfo) TotalMemInMB() float64 {
-	return ConvertBToMB(s.TotalMem)
+	return convertBToMB(s.TotalMem)
 }
 
 func (s *MemInfo) TotalMemInGB() float64 {
-	return ConvertBToGB(s.TotalMem)
+	return convertBToGB(s.TotalMem)
 }
 
 func (s *MemInfo) TotalHighMemInKB() uint64 {
-	return ConvertBToKB(s.TotalHighMem)
+	return convertBToKB(s.TotalHighMem)
 }
 
 func (s *MemInfo) TotalHighMemInMB() float64 {
-	return ConvertBToMB(s.TotalHighMem)
+	return convertBToMB(s.TotalHighMem)
 }
 
 func (s *MemInfo) TotalHighMemInGB() float64 {
-	return ConvertBToGB(s.TotalHighMem)
+	return convertBToGB(s.TotalHighMem)
 }
 
 // GetFreeRAMInKB returns the memory not being used by the system
 func (s *MemInfo) FreeMemInKB() uint64 {
-	return ConvertBToKB(s.FreeMem)
+	return convertBToKB(s.FreeMem)
 }
 
 func (s *MemInfo) FreeMemInMB() float64 {
-	return ConvertBToMB(s.FreeMem)
+	return convertBToMB(s.FreeMem)
 }
 
 func (s *MemInfo) FreeMemInGB() float64 {
-	return ConvertBToGB(s.FreeMem)
+	return convertBToGB(s.FreeMem)
 }
 
 func (s *MemInfo) FreeHighMemInKB() uint64 {
-	return ConvertBToKB(s.FreeHighMem)
+	return convertBToKB(s.FreeHighMem)
 }
 
 func (s *MemInfo) FreeHighMemInMB() float64 {
-	return ConvertBToMB(s.FreeHighMem)
+	return convertBToMB(s.FreeHighMem)
 }
 
 func (s *MemInfo) FreeHighMemInGB() float64 {
-	return ConvertBToGB(s.FreeHighMem)
+	return convertBToGB(s.FreeHighMem)
 }
 
 // GetAvailRAMInKB returns available memory
 // that can be immediately used by processes
 func (s *MemInfo) AvailMemInKB() uint64 {
-	return ConvertBToKB(s.AvailMem)
+	return convertBToKB(s.AvailMem)
 }
 
 func (s *MemInfo) AvailMemInMB() float64 {
-	return ConvertBToMB(s.AvailMem)
+	return convertBToMB(s.AvailMem)
 }
 
 func (s *MemInfo) AvailMemInGB() float64 {
-	return ConvertBToGB(s.AvailMem)
+	return convertBToGB(s.AvailMem)
 }
 
 func (s *MemInfo) UsedMemInKB() uint64 {
-	return ConvertBToKB(s.UsedMem)
+	return convertBToKB(s.UsedMem)
 }
 
 func (s *MemInfo) UsedMemInMB() float64 {
-	return ConvertBToMB(s.UsedMem)
+	return convertBToMB(s.UsedMem)
 }
 
 func (s *MemInfo) UsedMemInGB() float64 {
-	return ConvertBToGB(s.UsedMem)
+	return convertBToGB(s.UsedMem)
 }
 
 func (s *MemInfo) TotalUsedMemInKB() uint64 {
-	return ConvertBToKB(s.TotalUsedMem)
+	return convertBToKB(s.TotalUsedMem)
 }
 
 func (s *MemInfo) TotalUsedMemInMB() float64 {
-	return ConvertBToMB(s.TotalUsedMem)
+	return convertBToMB(s.TotalUsedMem)
 }
 
 func (s *MemInfo) TotalUsedMemInGB() float64 {
-	return ConvertBToGB(s.TotalUsedMem)
+	return convertBToGB(s.TotalUsedMem)
 }
 
 func (s *MemInfo) TotalUsedInKB() uint64 {
-	return ConvertBToKB(s.TotalUsed)
+	return convertBToKB(s.TotalUsed)
 }
 
 func (s *MemInfo) TotalUsedInMB() float64 {
-	return ConvertBToMB(s.TotalUsed)
+	return convertBToMB(s.TotalUsed)
 }
 
 func (s *MemInfo) TotalUsedInGB() float64 {
-	return ConvertBToGB(s.TotalUsed)
+	return convertBToGB(s.TotalUsed)
 }
 
 func (s *MemInfo) BufferMemInKB() uint64 {
-	return ConvertBToKB(s.BufferMem)
+	return convertBToKB(s.BufferMem)
 }
 
 func (s *MemInfo) BufferMemInMB() float64 {
-	return ConvertBToMB(s.BufferMem)
+	return convertBToMB(s.BufferMem)
 }
 
 func (s *MemInfo) BufferMemInGB() float64 {
-	return ConvertBToGB(s.BufferMem)
+	return convertBToGB(s.BufferMem)
 }
 
 func (s *MemInfo) SharedMemInKB() uint64 {
-	return ConvertBToKB(s.SharedMem)
+	return convertBToKB(s.SharedMem)
 }
 
 func (s *MemInfo) SharedMemInMB() float64 {
-	return ConvertBToMB(s.SharedMem)
+	return convertBToMB(s.SharedMem)
 }
 
 func (s *MemInfo) SharedMemInGB() float64 {
-	return ConvertBToGB(s.SharedMem)
+	return convertBToGB(s.SharedMem)
 }
 
 func (s *MemInfo) TotalSwapInKB() uint64 {
-	return ConvertBToKB(s.TotalSwap)
+	return convertBToKB(s.TotalSwap)
 }
 
 func (s *MemInfo) TotalSwapInMB() float64 {
-	return ConvertBToMB(s.TotalSwap)
+	return convertBToMB(s.TotalSwap)
 }
 
 func (s *MemInfo) TotalSwapInGB() float64 {
-	return ConvertBToGB(s.TotalSwap)
+	return convertBToGB(s.TotalSwap)
 }
 
 func (s *MemInfo) FreeSwapInKB() uint64 {
-	return ConvertBToKB(s.FreeSwap)
+	return convertBToKB(s.FreeSwap)
 }
 
 func (s *MemInfo) FreeSwapInMB() float64 {
-	return ConvertBToMB(s.FreeSwap)
+	return convertBToMB(s.FreeSwap)
 }
 
 func (s *MemInfo) FreeSwapInGB() float64 {
-	return ConvertBToGB(s.FreeSwap)
+	return convertBToGB(s.FreeSwap)
 }
 
 func (s *MemInfo) UsedSwapInKB() uint64 {
-	return ConvertBToKB(s.UsedSwap)
+	return convertBToKB(s.UsedSwap)
 }
 
 func (s *MemInfo) UsedSwapInMB() float64 {
-	return ConvertBToMB(s.UsedSwap)
+	return convertBToMB(s.UsedSwap)
 }
 
 func (s *MemInfo) UsedSwapInGB() float64 {
-	return ConvertBToGB(s.UsedSwap)
+	return convertBToGB(s.UsedSwap)
 }
 
 func (s *MemInfo) Get() error {
@@ -224,7 +224,7 @@ func readMeminfo() (uint64, uint64, error) {
 	}
 	defer file.Close()
 
-	var content string
+	var line string
 	var availMem uint64
 	var cachedMem uint64
 	var availStatus bool
@@ -232,22 +232,22 @@ func readMeminfo() (uint64, uint64, error) {
 	scanner := bufio.NewScanner(file)
 
 	for scanner.Scan() {
-		content = scanner.Text()
-		if strings.Contains(content, "MemAvailable") {
-			m, err := strconv.Atoi(strings.Fields(content)[1])
+		line = scanner.Text()
+		if strings.Contains(line, "MemAvailable") {
+			m, err := strconv.Atoi(strings.Fields(line)[1])
 			if err != nil {
 				return 0, 0, err
 			}
-			availMem = ConvertKBToB(uint64(m))
+			availMem = convertKBToB(uint64(m))
 			availStatus = true
 		}
 
-		if strings.Contains(content, "Cached") {
-			c, err := strconv.Atoi(strings.Fields(content)[1])
+		if strings.Contains(line, "Cached") {
+			c, err := strconv.Atoi(strings.Fields(line)[1])
 			if err != nil {
 				return 0, 0, err
 			}
-			cachedMem = ConvertKBToB(uint64(c))
+			cachedMem = convertKBToB(uint64(c))
 			cachedStatus = true
 		}
 

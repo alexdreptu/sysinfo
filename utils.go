@@ -1,5 +1,10 @@
 package sysinfo
 
+import (
+	"io/ioutil"
+	"strings"
+)
+
 const (
 	_          = iota
 	KB float64 = 1 << (10 * iota)
@@ -7,7 +12,14 @@ const (
 	GB
 )
 
-func ConvertInt8ArrayToString(s [65]int8) string {
+const (
+	Hz  float64 = 1
+	Khz         = 1000 * Hz
+	Mhz         = 1000 * Khz
+	Ghz         = 1000 * Mhz
+)
+
+func convertInt8ArrayToString(s [65]int8) string {
 	b := make([]byte, len(s))
 	for i, v := range s {
 		b[i] = byte(v)
@@ -15,26 +27,46 @@ func ConvertInt8ArrayToString(s [65]int8) string {
 	return string(b)
 }
 
-func ConvertBToKB(size uint64) uint64 {
+func convertBToKB(size uint64) uint64 {
 	return size / uint64(KB)
 }
 
-func ConvertBToMB(size uint64) float64 {
+func convertBToMB(size uint64) float64 {
 	return float64(size) / MB
 }
 
-func ConvertBToGB(size uint64) float64 {
+func convertBToGB(size uint64) float64 {
 	return float64(size) / GB
 }
 
-func ConvertKBToB(size uint64) uint64 {
+func convertKBToB(size uint64) uint64 {
 	return size * uint64(KB)
 }
 
-func ConvertMBToB(size float64) uint64 {
+func convertKBToMB(size uint64) float64 {
+	return float64(size) / KB
+}
+
+func convertMBToB(size float64) uint64 {
 	return uint64(size * MB)
 }
 
-func ConvertGBToB(size float64) uint64 {
+func convertGBToB(size float64) uint64 {
 	return uint64(size * GB)
+}
+
+func convertKhzToMhz(freq uint64) uint64 {
+	return freq / uint64(Khz)
+}
+
+func convertKhzToGhz(freq uint64) float64 {
+	return float64(freq) / Mhz
+}
+
+func readSingleValueFile(path string) (string, error) {
+	content, err := ioutil.ReadFile(path)
+	if err != nil {
+		return "", err
+	}
+	return strings.TrimSpace(string(content)), nil
 }

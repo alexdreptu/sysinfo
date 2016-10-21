@@ -24,12 +24,12 @@ func (u *NodeInfo) Get() error {
 		return err
 	}
 
-	u.DomainName = ConvertInt8ArrayToString(utsname.Domainname)
-	u.Machine = ConvertInt8ArrayToString(utsname.Machine)
-	u.NodeName = ConvertInt8ArrayToString(utsname.Nodename)
-	u.Release = ConvertInt8ArrayToString(utsname.Release)
-	u.SysName = ConvertInt8ArrayToString(utsname.Sysname)
-	u.Version = ConvertInt8ArrayToString(utsname.Version)
+	u.DomainName = convertInt8ArrayToString(utsname.Domainname)
+	u.Machine = convertInt8ArrayToString(utsname.Machine)
+	u.NodeName = convertInt8ArrayToString(utsname.Nodename)
+	u.Release = convertInt8ArrayToString(utsname.Release)
+	u.SysName = convertInt8ArrayToString(utsname.Sysname)
+	u.Version = convertInt8ArrayToString(utsname.Version)
 
 	var err error
 	u.OSName, err = readOSName()
