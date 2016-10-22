@@ -21,6 +21,7 @@ type CPUInfo struct {
 }
 
 const (
+	cpuFreqPath    = "/sys/devices/system/cpu/cpu0/cpufreq"
 	cpuMinFreqPath = "/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_min_freq"
 	cpuMaxFreqPath = "/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq"
 )
@@ -131,6 +132,10 @@ func (c *CPUInfo) Get() error {
 
 	if err = scanner.Err(); err != nil {
 		return err
+	}
+
+	if _, err := os.Stat(cpuFreqPath); os.IsNotExist(err) {
+		return nil
 	}
 
 	minFreq, err := readSingleValueFile(cpuMinFreqPath)
