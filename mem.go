@@ -236,7 +236,7 @@ func readMeminfo() (uint64, uint64, error) {
 
 		fields := strings.Split(line, ":")
 		key := strings.TrimSpace(fields[0])
-		value := strings.TrimSpace(strings.Fields(fields[1])[0])
+		value := strings.Fields(fields[1])[0]
 
 		switch key {
 		case "MemAvailable":
