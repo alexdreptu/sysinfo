@@ -1,6 +1,9 @@
 package sysinfo
 
-import "testing"
+import (
+	"testing"
+	"time"
+)
 
 func TestDisplayUptimeInfo(t *testing.T) {
 	uptime := NewUptime()
@@ -8,8 +11,7 @@ func TestDisplayUptimeInfo(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	t.Logf("Uptime: %s\n", uptime.GetUptime())
-	t.Logf("Uptime: %.0f seconds\n", uptime.GetUptime().Seconds())
-	t.Logf("Uptime: %.1f minutes\n", uptime.GetUptime().Minutes())
-	t.Logf("Uptime: %.1f hours\n", uptime.GetUptime().Hours())
+	t.Logf("Uptime: %s\n", uptime)
+	t.Logf("Up since (RFC1123): %s\n", uptime.UpSince())
+	t.Logf("Up since (UnixDate): %s\n", uptime.UpSinceFormat(time.UnixDate))
 }
