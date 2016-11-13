@@ -218,8 +218,8 @@ func (s *MemInfo) Get() error {
 	return nil
 }
 
-// read /proc/meminfo and return available and cached memory in bytes
-//func readMeminfo() (uint64, uint64, error) {
+// read /proc/meminfo and return an anonymous struct
+// with available and cached memory in bytes
 func readMeminfo() (struct{ availMem, cachedMem uint64 }, error) {
 	meminfo := struct{ availMem, cachedMem uint64 }{}
 
