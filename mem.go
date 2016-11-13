@@ -202,11 +202,13 @@ func (s *MemInfo) Get() error {
 	s.TotalSwap = si.Totalswap
 	s.FreeSwap = si.Freeswap
 
-	var err error
-	s.AvailMem, s.CachedMem, err = readMeminfo()
+	meminfo, err := readMeminfo()
 	if err != nil {
 		return err
 	}
+
+	s.AvailMem = meminfo.availMem
+	s.CachedMem = meminfo.cachedMem
 
 	s.UsedMem = s.TotalMem - s.FreeMem - s.BufferMem - s.CachedMem
 	s.TotalUsedMem = s.TotalMem - s.FreeMem
@@ -217,15 +219,16 @@ func (s *MemInfo) Get() error {
 }
 
 // read /proc/meminfo and return available and cached memory in bytes
-func readMeminfo() (uint64, uint64, error) {
+//func readMeminfo() (uint64, uint64, error) {
+func readMeminfo() (struct{ availMem, cachedMem uint64 }, error) {
+	meminfo := struct{ availMem, cachedMem uint64 }{}
+
 	file, err := os.Open("/proc/meminfo")
 	if err != nil {
-		return 0, 0, err
+		return meminfo, err
 	}
 	defer file.Close()
 
-	var availMem uint64
-	var cachedMem uint64
 	scanner := bufio.NewScanner(file)
 
 	for scanner.Scan() {
@@ -242,24 +245,24 @@ func readMeminfo() (uint64, uint64, error) {
 		case "MemAvailable":
 			n, err := strconv.Atoi(value)
 			if err != nil {
-				return 0, 0, err
+				return meminfo, err
 			}
-			availMem = convertKBToB(uint64(n))
+			meminfo.availMem = convertKBToB(uint64(n))
 
 		case "Cached":
 			n, err := strconv.Atoi(value)
 			if err != nil {
-				return 0, 0, err
+				return meminfo, err
 			}
-			cachedMem = convertKBToB(uint64(n))
+			meminfo.cachedMem = convertKBToB(uint64(n))
 		}
 	}
 
 	if err := scanner.Err(); err != nil {
-		return 0, 0, err
+		return meminfo, err
 	}
 
-	return availMem, cachedMem, nil
+	return meminfo, nil
 }
 
 func NewMem() *MemInfo {
