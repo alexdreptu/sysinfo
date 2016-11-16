@@ -3,6 +3,8 @@ package sysinfo
 import (
 	"time"
 
+	"github.com/cactus/gostrftime"
+
 	"golang.org/x/sys/unix"
 )
 
@@ -64,9 +66,9 @@ func (u Uptime) UpSince() string {
 	return then.Format(time.RFC1123)
 }
 
-func (u Uptime) UpSinceFormat(dateFormat string) string {
+func (u Uptime) UpSinceFormat(layout string) string {
 	then := time.Now().Add(-u.Uptime)
-	return then.Format(dateFormat)
+	return gostrftime.Format(layout, then)
 }
 
 func (u *Uptime) Get() error {
