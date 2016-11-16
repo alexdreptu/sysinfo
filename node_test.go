@@ -1,9 +1,13 @@
-package sysinfo
+package sysinfo_test
 
-import "testing"
+import (
+	"testing"
+
+	"github.com/alexdreptu/sysinfo"
+)
 
 func TestNodeInfo(t *testing.T) {
-	node := NewNode()
+	node := sysinfo.Node{}
 	if err := node.Get(); err != nil {
 		t.Fatal(err)
 	}

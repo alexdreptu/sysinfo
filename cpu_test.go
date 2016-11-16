@@ -1,9 +1,13 @@
-package sysinfo
+package sysinfo_test
 
-import "testing"
+import (
+	"testing"
+
+	"github.com/alexdreptu/sysinfo"
+)
 
 func TestCPUInfo(t *testing.T) {
-	cpu := NewCPU()
+	cpu := sysinfo.CPU{}
 	if err := cpu.Get(); err != nil {
 		t.Fatal(err)
 	}

@@ -6,11 +6,11 @@ import (
 	"golang.org/x/sys/unix"
 )
 
-type UptimeInfo struct {
+type Uptime struct {
 	Uptime time.Duration
 }
 
-func (u UptimeInfo) String() string {
+func (u Uptime) String() string {
 	var buf [32]byte
 	w := len(buf)
 
@@ -59,17 +59,17 @@ func (u UptimeInfo) String() string {
 	return string(buf[w:])
 }
 
-func (u UptimeInfo) UpSince() string {
+func (u Uptime) UpSince() string {
 	then := time.Now().Add(-u.Uptime)
 	return then.Format(time.RFC1123)
 }
 
-func (u UptimeInfo) UpSinceFormat(dateFormat string) string {
+func (u Uptime) UpSinceFormat(dateFormat string) string {
 	then := time.Now().Add(-u.Uptime)
 	return then.Format(dateFormat)
 }
 
-func (u *UptimeInfo) Get() error {
+func (u *Uptime) Get() error {
 	si := unix.Sysinfo_t{}
 	if err := unix.Sysinfo(&si); err != nil {
 		return err
@@ -118,8 +118,4 @@ func fmtInt(buf []byte, v uint64) int {
 		}
 	}
 	return w
-}
-
-func NewUptime() *UptimeInfo {
-	return &UptimeInfo{}
 }

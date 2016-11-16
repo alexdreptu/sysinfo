@@ -1,9 +1,13 @@
-package sysinfo
+package sysinfo_test
 
-import "testing"
+import (
+	"testing"
+
+	"github.com/alexdreptu/sysinfo"
+)
 
 func TestDisplayRootFSInfo(t *testing.T) {
-	rootfs := NewFS()
+	rootfs := sysinfo.FS{}
 	if err := rootfs.Get("/"); err != nil {
 		t.Fatal(err)
 	}
@@ -22,7 +26,7 @@ func TestDisplayRootFSInfo(t *testing.T) {
 }
 
 func TestDisplayHomeFSInfo(t *testing.T) {
-	homefs := NewFS()
+	homefs := sysinfo.FS{}
 	if err := homefs.Get("/home"); err != nil {
 		t.Fatal(err)
 	}

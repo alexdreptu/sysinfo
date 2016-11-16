@@ -7,7 +7,7 @@ import (
 	"strings"
 )
 
-type CPUInfo struct {
+type CPU struct {
 	Name      string
 	Model     uint64
 	Vendor    string
@@ -26,27 +26,27 @@ const (
 	cpuMaxFreqPath = "/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq"
 )
 
-func (c *CPUInfo) CacheSizeInMB() float64 {
+func (c *CPU) CacheSizeInMB() float64 {
 	return convertKBToMB(c.CacheSize)
 }
 
-func (c *CPUInfo) MinFreqInMhz() uint64 {
+func (c *CPU) MinFreqInMhz() uint64 {
 	return convertKhzToMhz(c.MinFreq)
 }
 
-func (c *CPUInfo) MaxFreqInMhz() uint64 {
+func (c *CPU) MaxFreqInMhz() uint64 {
 	return convertKhzToMhz(c.MaxFreq)
 }
 
-func (c *CPUInfo) MinFreqInGhz() float64 {
+func (c *CPU) MinFreqInGhz() float64 {
 	return convertKhzToGhz(c.MinFreq)
 }
 
-func (c *CPUInfo) MaxFreqInGhz() float64 {
+func (c *CPU) MaxFreqInGhz() float64 {
 	return convertKhzToGhz(c.MaxFreq)
 }
 
-func (c *CPUInfo) Get() error {
+func (c *CPU) Get() error {
 	file, err := os.Open("/proc/cpuinfo")
 	if err != nil {
 		return err
@@ -159,8 +159,4 @@ func (c *CPUInfo) Get() error {
 	}
 
 	return nil
-}
-
-func NewCPU() *CPUInfo {
-	return &CPUInfo{}
 }

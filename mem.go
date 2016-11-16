@@ -9,7 +9,7 @@ import (
 	"golang.org/x/sys/unix"
 )
 
-type MemInfo struct {
+type Mem struct {
 	Procs        uint16
 	TotalMem     uint64
 	TotalHighMem uint64
@@ -27,166 +27,166 @@ type MemInfo struct {
 	TotalUsed    uint64
 }
 
-func (s *MemInfo) TotalMemInKB() uint64 {
+func (s *Mem) TotalMemInKB() uint64 {
 	return convertBToKB(s.TotalMem)
 }
 
-func (s *MemInfo) TotalMemInMB() float64 {
+func (s *Mem) TotalMemInMB() float64 {
 	return convertBToMB(s.TotalMem)
 }
 
-func (s *MemInfo) TotalMemInGB() float64 {
+func (s *Mem) TotalMemInGB() float64 {
 	return convertBToGB(s.TotalMem)
 }
 
-func (s *MemInfo) TotalHighMemInKB() uint64 {
+func (s *Mem) TotalHighMemInKB() uint64 {
 	return convertBToKB(s.TotalHighMem)
 }
 
-func (s *MemInfo) TotalHighMemInMB() float64 {
+func (s *Mem) TotalHighMemInMB() float64 {
 	return convertBToMB(s.TotalHighMem)
 }
 
-func (s *MemInfo) TotalHighMemInGB() float64 {
+func (s *Mem) TotalHighMemInGB() float64 {
 	return convertBToGB(s.TotalHighMem)
 }
 
 // GetFreeRAMInKB returns the memory not being used by the system
-func (s *MemInfo) FreeMemInKB() uint64 {
+func (s *Mem) FreeMemInKB() uint64 {
 	return convertBToKB(s.FreeMem)
 }
 
-func (s *MemInfo) FreeMemInMB() float64 {
+func (s *Mem) FreeMemInMB() float64 {
 	return convertBToMB(s.FreeMem)
 }
 
-func (s *MemInfo) FreeMemInGB() float64 {
+func (s *Mem) FreeMemInGB() float64 {
 	return convertBToGB(s.FreeMem)
 }
 
-func (s *MemInfo) FreeHighMemInKB() uint64 {
+func (s *Mem) FreeHighMemInKB() uint64 {
 	return convertBToKB(s.FreeHighMem)
 }
 
-func (s *MemInfo) FreeHighMemInMB() float64 {
+func (s *Mem) FreeHighMemInMB() float64 {
 	return convertBToMB(s.FreeHighMem)
 }
 
-func (s *MemInfo) FreeHighMemInGB() float64 {
+func (s *Mem) FreeHighMemInGB() float64 {
 	return convertBToGB(s.FreeHighMem)
 }
 
 // GetAvailRAMInKB returns available memory
 // that can be immediately used by processes
-func (s *MemInfo) AvailMemInKB() uint64 {
+func (s *Mem) AvailMemInKB() uint64 {
 	return convertBToKB(s.AvailMem)
 }
 
-func (s *MemInfo) AvailMemInMB() float64 {
+func (s *Mem) AvailMemInMB() float64 {
 	return convertBToMB(s.AvailMem)
 }
 
-func (s *MemInfo) AvailMemInGB() float64 {
+func (s *Mem) AvailMemInGB() float64 {
 	return convertBToGB(s.AvailMem)
 }
 
-func (s *MemInfo) UsedMemInKB() uint64 {
+func (s *Mem) UsedMemInKB() uint64 {
 	return convertBToKB(s.UsedMem)
 }
 
-func (s *MemInfo) UsedMemInMB() float64 {
+func (s *Mem) UsedMemInMB() float64 {
 	return convertBToMB(s.UsedMem)
 }
 
-func (s *MemInfo) UsedMemInGB() float64 {
+func (s *Mem) UsedMemInGB() float64 {
 	return convertBToGB(s.UsedMem)
 }
 
-func (s *MemInfo) TotalUsedMemInKB() uint64 {
+func (s *Mem) TotalUsedMemInKB() uint64 {
 	return convertBToKB(s.TotalUsedMem)
 }
 
-func (s *MemInfo) TotalUsedMemInMB() float64 {
+func (s *Mem) TotalUsedMemInMB() float64 {
 	return convertBToMB(s.TotalUsedMem)
 }
 
-func (s *MemInfo) TotalUsedMemInGB() float64 {
+func (s *Mem) TotalUsedMemInGB() float64 {
 	return convertBToGB(s.TotalUsedMem)
 }
 
-func (s *MemInfo) TotalUsedInKB() uint64 {
+func (s *Mem) TotalUsedInKB() uint64 {
 	return convertBToKB(s.TotalUsed)
 }
 
-func (s *MemInfo) TotalUsedInMB() float64 {
+func (s *Mem) TotalUsedInMB() float64 {
 	return convertBToMB(s.TotalUsed)
 }
 
-func (s *MemInfo) TotalUsedInGB() float64 {
+func (s *Mem) TotalUsedInGB() float64 {
 	return convertBToGB(s.TotalUsed)
 }
 
-func (s *MemInfo) BufferMemInKB() uint64 {
+func (s *Mem) BufferMemInKB() uint64 {
 	return convertBToKB(s.BufferMem)
 }
 
-func (s *MemInfo) BufferMemInMB() float64 {
+func (s *Mem) BufferMemInMB() float64 {
 	return convertBToMB(s.BufferMem)
 }
 
-func (s *MemInfo) BufferMemInGB() float64 {
+func (s *Mem) BufferMemInGB() float64 {
 	return convertBToGB(s.BufferMem)
 }
 
-func (s *MemInfo) SharedMemInKB() uint64 {
+func (s *Mem) SharedMemInKB() uint64 {
 	return convertBToKB(s.SharedMem)
 }
 
-func (s *MemInfo) SharedMemInMB() float64 {
+func (s *Mem) SharedMemInMB() float64 {
 	return convertBToMB(s.SharedMem)
 }
 
-func (s *MemInfo) SharedMemInGB() float64 {
+func (s *Mem) SharedMemInGB() float64 {
 	return convertBToGB(s.SharedMem)
 }
 
-func (s *MemInfo) TotalSwapInKB() uint64 {
+func (s *Mem) TotalSwapInKB() uint64 {
 	return convertBToKB(s.TotalSwap)
 }
 
-func (s *MemInfo) TotalSwapInMB() float64 {
+func (s *Mem) TotalSwapInMB() float64 {
 	return convertBToMB(s.TotalSwap)
 }
 
-func (s *MemInfo) TotalSwapInGB() float64 {
+func (s *Mem) TotalSwapInGB() float64 {
 	return convertBToGB(s.TotalSwap)
 }
 
-func (s *MemInfo) FreeSwapInKB() uint64 {
+func (s *Mem) FreeSwapInKB() uint64 {
 	return convertBToKB(s.FreeSwap)
 }
 
-func (s *MemInfo) FreeSwapInMB() float64 {
+func (s *Mem) FreeSwapInMB() float64 {
 	return convertBToMB(s.FreeSwap)
 }
 
-func (s *MemInfo) FreeSwapInGB() float64 {
+func (s *Mem) FreeSwapInGB() float64 {
 	return convertBToGB(s.FreeSwap)
 }
 
-func (s *MemInfo) UsedSwapInKB() uint64 {
+func (s *Mem) UsedSwapInKB() uint64 {
 	return convertBToKB(s.UsedSwap)
 }
 
-func (s *MemInfo) UsedSwapInMB() float64 {
+func (s *Mem) UsedSwapInMB() float64 {
 	return convertBToMB(s.UsedSwap)
 }
 
-func (s *MemInfo) UsedSwapInGB() float64 {
+func (s *Mem) UsedSwapInGB() float64 {
 	return convertBToGB(s.UsedSwap)
 }
 
-func (s *MemInfo) Get() error {
+func (s *Mem) Get() error {
 	si := unix.Sysinfo_t{}
 	if err := unix.Sysinfo(&si); err != nil {
 		return err
@@ -218,7 +218,7 @@ func (s *MemInfo) Get() error {
 	return nil
 }
 
-// read /proc/meminfo and return an anonymous struct
+// read /proc/meminfo and returns an anonymous struct
 // with available and cached memory in bytes
 func readMeminfo() (struct{ availMem, cachedMem uint64 }, error) {
 	meminfo := struct{ availMem, cachedMem uint64 }{}
@@ -263,8 +263,4 @@ func readMeminfo() (struct{ availMem, cachedMem uint64 }, error) {
 	}
 
 	return meminfo, nil
-}
-
-func NewMem() *MemInfo {
-	return &MemInfo{}
 }

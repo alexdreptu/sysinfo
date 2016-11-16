@@ -1,12 +1,14 @@
-package sysinfo
+package sysinfo_test
 
 import (
 	"testing"
 	"time"
+
+	"github.com/alexdreptu/sysinfo"
 )
 
 func TestDisplayUptimeInfo(t *testing.T) {
-	uptime := NewUptime()
+	uptime := sysinfo.Uptime{}
 	if err := uptime.Get(); err != nil {
 		t.Fatal(err)
 	}

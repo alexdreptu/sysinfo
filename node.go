@@ -8,7 +8,7 @@ import (
 	"golang.org/x/sys/unix"
 )
 
-type NodeInfo struct {
+type Node struct {
 	DomainName string
 	Machine    string
 	NodeName   string
@@ -18,7 +18,7 @@ type NodeInfo struct {
 	OSName     string // from /etc/os-release
 }
 
-func (u *NodeInfo) Get() error {
+func (u *Node) Get() error {
 	utsname := unix.Utsname{}
 	if err := unix.Uname(&utsname); err != nil {
 		return err
@@ -58,8 +58,4 @@ func readOSName() (string, error) {
 	}
 
 	return content, nil
-}
-
-func NewNode() *NodeInfo {
-	return &NodeInfo{}
 }

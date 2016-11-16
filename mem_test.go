@@ -1,9 +1,13 @@
-package sysinfo
+package sysinfo_test
 
-import "testing"
+import (
+	"testing"
+
+	"github.com/alexdreptu/sysinfo"
+)
 
 func TestPrintNumOfProcs(t *testing.T) {
-	mem := NewMem()
+	mem := sysinfo.Mem{}
 	if err := mem.Get(); err != nil {
 		t.Fatal(err)
 	}
@@ -11,7 +15,7 @@ func TestPrintNumOfProcs(t *testing.T) {
 }
 
 func TestDisplayMemInfo(t *testing.T) {
-	mem := NewMem()
+	mem := sysinfo.Mem{}
 	if err := mem.Get(); err != nil {
 		t.Fatal(err)
 	}
