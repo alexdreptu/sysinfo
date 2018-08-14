@@ -7,52 +7,44 @@ import (
 
 const (
 	_          = iota
-	kb float64 = 1 << (10 * iota)
-	mb
-	gb
+	KB float64 = 1 << (10 * iota)
+	MB
+	GB
 )
 
 const (
-	hz  float64 = 1
-	khz         = 1000 * hz
-	mhz         = 1000 * khz
-	ghz         = 1000 * mhz
+	Hz  float64 = 1
+	KHz         = 1000 * Hz
+	MHz         = 1000 * KHz
+	GHz         = 1000 * MHz
 )
 
-func convertInt8ArrayToString(s [65]int8) string {
-	b := make([]byte, len(s))
-	for i, v := range s {
-		b[i] = byte(v)
-	}
-	return string(b)
-}
-
 func convertBToKB(size uint64) uint64 {
-	return size / uint64(kb)
+	return size / uint64(KB)
 }
 
 func convertBToMB(size uint64) float64 {
-	return float64(size) / mb
+	return float64(size) / MB
 }
 
 func convertBToGB(size uint64) float64 {
-	return float64(size) / gb
+	return float64(size) / GB
 }
 
 func convertKBToB(size uint64) uint64 {
-	return size * uint64(kb)
+	return size * uint64(KB)
 }
 
 func convertKBToMB(size uint64) float64 {
-	return float64(size) / kb
+	return float64(size) / KB
 }
 
 func convertKhzToMhz(freq uint64) uint64 {
-	return freq / uint64(khz)
+	return freq / uint64(KHz)
 }
 
 func convertKhzToGhz(freq uint64) float64 {
-	return float64(freq) / mhz
+	return float64(freq) / MHz
 }
 
 func readSingleValueFile(path string) (string, error) {

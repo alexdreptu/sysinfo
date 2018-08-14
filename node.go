@@ -18,22 +18,20 @@ type Node struct {
 	OSName     string // from /etc/os-release
 }
 
-func (u *Node) Get() error {
+func (u *Node) Get() (err error) {
 	utsname := unix.Utsname{}
-	if err := unix.Uname(&utsname); err != nil {
+	if err = unix.Uname(&utsname); err != nil {
 		return err
 	}
 
-	u.DomainName = convertInt8ArrayToString(utsname.Domainname)
-	u.Machine = convertInt8ArrayToString(utsname.Machine)
-	u.NodeName = convertInt8ArrayToString(utsname.Nodename)
-	u.Release = convertInt8ArrayToString(utsname.Release)
-	u.SysName = convertInt8ArrayToString(utsname.Sysname)
-	u.Version = convertInt8ArrayToString(utsname.Version)
+	u.DomainName = string(utsname.Domainname[:])
+	u.Machine = string(utsname.Machine[:])
+	u.NodeName = string(utsname.Nodename[:])
+	u.Release = string(utsname.Release[:])
+	u.SysName = string(utsname.Sysname[:])
+	u.Version = string(utsname.Version[:])
 
-	var err error
-	u.OSName, err = readOSName()
-	if err != nil {
+	if u.OSName, err = readOSName(); err != nil {
 		return err
 	}
 
