@@ -31,11 +31,8 @@ func (u *Node) Get() (err error) {
 	u.SysName = string(utsname.Sysname[:])
 	u.Version = string(utsname.Version[:])
 
-	if u.OSName, err = readOSName(); err != nil {
-		return err
-	}
-
-	return nil
+	u.OSName, err = readOSName()
+	return err
 }
 
 func readOSName() (string, error) {
