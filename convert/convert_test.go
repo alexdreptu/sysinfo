@@ -167,3 +167,29 @@ func TestGibibytesToMebibytes(t *testing.T) {
 		assert.Equal(t, tc.expected, (Unit(tc.value) * Gibibyte).Mebibytes())
 	}
 }
+
+func TestMegahertzToGigahertz(t *testing.T) {
+	testCases := []testCase{
+		{value: 1000, expected: 1},
+		{value: 1300, expected: 1.3},
+		{value: 1700, expected: 1.7},
+		{value: 23700, expected: 23.7},
+	}
+
+	for _, tc := range testCases {
+		assert.Equal(t, tc.expected, (Unit(tc.value) * Megahertz).Gigahertz())
+	}
+}
+
+func TestGigahertzToMegahertz(t *testing.T) {
+	testCases := []testCase{
+		{value: 1, expected: 1000},
+		{value: 1.3, expected: 1300},
+		{value: 1.7, expected: 1700},
+		{value: 23.7, expected: 23700},
+	}
+
+	for _, tc := range testCases {
+		assert.Equal(t, tc.expected, (Unit(tc.value) * Gigahertz).Megahertz())
+	}
+}
