@@ -114,7 +114,8 @@ func TestMemConversion(t *testing.T) {
 	mem.F = sysinfo
 	mem.AvailMem = availMem
 	mem.CachedMem = cachedMem
-	mem.Fetch()
+
+	assert.NoError(t, mem.Fetch())
 
 	assert.Equal(t, procs, mem.Procs)
 	assert.Equal(t, totalMem, mem.TotalMem)
