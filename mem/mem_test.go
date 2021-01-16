@@ -8,7 +8,7 @@ import (
 	"golang.org/x/sys/unix"
 )
 
-// Test values
+// test values
 const (
 	totalMemInBytes     float64 = 8589934592
 	totalMemInKibibytes float64 = 8388608
@@ -35,16 +35,6 @@ const (
 	availMemInMebibytes float64 = 2560
 	availMemInGibibytes float64 = 2.5
 
-	usedMemInBytes     float64 = totalMemInBytes - freeMemInBytes - bufferMemInBytes - cachedMemInBytes
-	usedMemInKibibytes float64 = totalMemInKibibytes - freeMemInKibibytes - bufferMemInKibibytes - cachedMemInKibibytes
-	usedMemInMebibytes float64 = totalMemInMebibytes - freeMemInMebibytes - bufferMemInMebibytes - cachedMemInMebibytes
-	usedMemInGibibytes float64 = totalMemInGibibytes - freeMemInGibibytes - bufferMemInGibibytes - cachedMemInGibibytes
-
-	totalUsedMemInBytes     float64 = totalMemInBytes - freeMemInBytes
-	totalUsedMemInKibibytes float64 = totalMemInKibibytes - freeMemInKibibytes
-	totalUsedMemInMebibytes float64 = totalMemInMebibytes - freeMemInMebibytes
-	totalUsedMemInGibibytes float64 = totalMemInGibibytes - freeMemInGibibytes
-
 	bufferMemInBytes     float64 = 2684354560
 	bufferMemInKibibytes float64 = 2621440
 	bufferMemInMebibytes float64 = 2560
@@ -69,16 +59,30 @@ const (
 	freeSwapInKibibytes float64 = 7340032
 	freeSwapInMebibytes float64 = 7168
 	freeSwapInGibibytes float64 = 7
+)
 
-	usedSwapInBytes     float64 = totalSwapInBytes - freeSwapInBytes
+const (
+	usedMemInKibibytes float64 = totalMemInKibibytes - freeMemInKibibytes -
+		bufferMemInKibibytes - cachedMemInKibibytes
+	usedMemInMebibytes float64 = totalMemInMebibytes - freeMemInMebibytes -
+		bufferMemInMebibytes - cachedMemInMebibytes
+	usedMemInGibibytes float64 = totalMemInGibibytes - freeMemInGibibytes -
+		bufferMemInGibibytes - cachedMemInGibibytes
+
+	totalUsedMemInKibibytes float64 = totalMemInKibibytes - freeMemInKibibytes
+	totalUsedMemInMebibytes float64 = totalMemInMebibytes - freeMemInMebibytes
+	totalUsedMemInGibibytes float64 = totalMemInGibibytes - freeMemInGibibytes
+
 	usedSwapInKibibytes float64 = totalSwapInKibibytes - freeSwapInKibibytes
 	usedSwapInMebibytes float64 = totalSwapInMebibytes - freeSwapInMebibytes
 	usedSwapInGibibytes float64 = totalSwapInGibibytes - freeSwapInGibibytes
 
-	totalUsedInBytes     float64 = totalMemInBytes - freeMemInBytes + totalSwapInBytes - freeSwapInBytes
-	totalUsedInKibibytes float64 = totalMemInKibibytes - freeMemInKibibytes + totalSwapInKibibytes - freeSwapInKibibytes
-	totalUsedInMebibytes float64 = totalMemInMebibytes - freeMemInMebibytes + totalSwapInMebibytes - freeSwapInMebibytes
-	totalUsedInGibibytes float64 = totalMemInGibibytes - freeMemInGibibytes + totalSwapInGibibytes - freeSwapInGibibytes
+	totalUsedInKibibytes float64 = totalMemInKibibytes - freeMemInKibibytes +
+		totalSwapInKibibytes - freeSwapInKibibytes
+	totalUsedInMebibytes float64 = totalMemInMebibytes - freeMemInMebibytes +
+		totalSwapInMebibytes - freeSwapInMebibytes
+	totalUsedInGibibytes float64 = totalMemInGibibytes - freeMemInGibibytes +
+		totalSwapInGibibytes - freeSwapInGibibytes
 )
 
 const (
@@ -94,6 +98,8 @@ const (
 	totalSwap    uint64 = uint64(totalSwapInBytes)
 	freeSwap     uint64 = uint64(freeSwapInBytes)
 )
+
+const delta = 0.01
 
 // mock function
 func sysinfo(info *unix.Sysinfo_t) error {
@@ -130,92 +136,92 @@ func TestMemConversion(t *testing.T) {
 	assert.Equal(t, freeSwap, mem.FreeSwap)
 
 	t.Run("total mem", func(t *testing.T) {
-		assert.Equal(t, totalMemInKibibytes, mem.TotalMemInKibibytes())
-		assert.Equal(t, totalMemInMebibytes, mem.TotalMemInMebibytes())
-		assert.Equal(t, totalMemInGibibytes, mem.TotalMemInGibibytes())
+		assert.InDelta(t, totalMemInKibibytes, mem.TotalMemInKibibytes(), delta)
+		assert.InDelta(t, totalMemInMebibytes, mem.TotalMemInMebibytes(), delta)
+		assert.InDelta(t, totalMemInGibibytes, mem.TotalMemInGibibytes(), delta)
 	})
 
 	t.Run("total high mem", func(t *testing.T) {
-		assert.Equal(t, totalHighMemInKibibytes, mem.TotalHighMemInKibibytes())
-		assert.Equal(t, totalHighMemInMebibytes, mem.TotalHighMemInMebibytes())
-		assert.Equal(t, totalHighMemInGibibytes, mem.TotalHighMemInGibibytes())
+		assert.InDelta(t, totalHighMemInKibibytes, mem.TotalHighMemInKibibytes(), delta)
+		assert.InDelta(t, totalHighMemInMebibytes, mem.TotalHighMemInMebibytes(), delta)
+		assert.InDelta(t, totalHighMemInGibibytes, mem.TotalHighMemInGibibytes(), delta)
 	})
 
 	t.Run("free mem", func(t *testing.T) {
-		assert.Equal(t, freeMemInKibibytes, mem.FreeMemInKibibytes())
-		assert.Equal(t, freeMemInMebibytes, mem.FreeMemInMebibytes())
-		assert.Equal(t, freeMemInGibibytes, mem.FreeMemInGibibytes())
+		assert.InDelta(t, freeMemInKibibytes, mem.FreeMemInKibibytes(), delta)
+		assert.InDelta(t, freeMemInMebibytes, mem.FreeMemInMebibytes(), delta)
+		assert.InDelta(t, freeMemInGibibytes, mem.FreeMemInGibibytes(), delta)
 	})
 
 	t.Run("free high mem", func(t *testing.T) {
-		assert.Equal(t, freeHighMemInKibibytes, mem.FreeHighMemInKibibytes())
-		assert.Equal(t, freeHighMemInMebibytes, mem.FreeHighMemInMebibytes())
-		assert.Equal(t, freeHighMemInGibibytes, mem.FreeHighMemInGibibytes())
+		assert.InDelta(t, freeHighMemInKibibytes, mem.FreeHighMemInKibibytes(), delta)
+		assert.InDelta(t, freeHighMemInMebibytes, mem.FreeHighMemInMebibytes(), delta)
+		assert.InDelta(t, freeHighMemInGibibytes, mem.FreeHighMemInGibibytes(), delta)
 	})
 
 	t.Run("avail mem", func(t *testing.T) {
-		assert.Equal(t, availMemInKibibytes, mem.AvailMemInKibibytes())
-		assert.Equal(t, availMemInMebibytes, mem.AvailMemInMebibytes())
-		assert.Equal(t, availMemInGibibytes, mem.AvailMemInGibibytes())
+		assert.InDelta(t, availMemInKibibytes, mem.AvailMemInKibibytes(), delta)
+		assert.InDelta(t, availMemInMebibytes, mem.AvailMemInMebibytes(), delta)
+		assert.InDelta(t, availMemInGibibytes, mem.AvailMemInGibibytes(), delta)
 	})
 
 	t.Run("used mem", func(t *testing.T) {
-		assert.Equal(t, usedMemInKibibytes, mem.UsedMemInKibibytes())
-		assert.Equal(t, usedMemInMebibytes, mem.UsedMemInMebibytes())
-		assert.Equal(t, usedMemInGibibytes, mem.UsedMemInGibibytes())
+		assert.InDelta(t, usedMemInKibibytes, mem.UsedMemInKibibytes(), delta)
+		assert.InDelta(t, usedMemInMebibytes, mem.UsedMemInMebibytes(), delta)
+		assert.InDelta(t, usedMemInGibibytes, mem.UsedMemInGibibytes(), delta)
 	})
 
 	t.Run("total high mem", func(t *testing.T) {
-		assert.Equal(t, totalHighMemInKibibytes, mem.TotalHighMemInKibibytes())
-		assert.Equal(t, totalHighMemInMebibytes, mem.TotalHighMemInMebibytes())
-		assert.Equal(t, totalHighMemInGibibytes, mem.TotalHighMemInGibibytes())
+		assert.InDelta(t, totalHighMemInKibibytes, mem.TotalHighMemInKibibytes(), delta)
+		assert.InDelta(t, totalHighMemInMebibytes, mem.TotalHighMemInMebibytes(), delta)
+		assert.InDelta(t, totalHighMemInGibibytes, mem.TotalHighMemInGibibytes(), delta)
 	})
 
 	t.Run("buffer mem", func(t *testing.T) {
-		assert.Equal(t, bufferMemInKibibytes, mem.BufferMemInKibibytes())
-		assert.Equal(t, bufferMemInMebibytes, mem.BufferMemInMebibytes())
-		assert.Equal(t, bufferMemInGibibytes, mem.BufferMemInGibibytes())
+		assert.InDelta(t, bufferMemInKibibytes, mem.BufferMemInKibibytes(), delta)
+		assert.InDelta(t, bufferMemInMebibytes, mem.BufferMemInMebibytes(), delta)
+		assert.InDelta(t, bufferMemInGibibytes, mem.BufferMemInGibibytes(), delta)
 	})
 
 	t.Run("cached mem", func(t *testing.T) {
-		assert.Equal(t, cachedMemInKibibytes, mem.CachedMemInKibibytes())
-		assert.Equal(t, cachedMemInMebibytes, mem.CachedMemInMebibytes())
-		assert.Equal(t, cachedMemInGibibytes, mem.CachedMemInGibibytes())
+		assert.InDelta(t, cachedMemInKibibytes, mem.CachedMemInKibibytes(), delta)
+		assert.InDelta(t, cachedMemInMebibytes, mem.CachedMemInMebibytes(), delta)
+		assert.InDelta(t, cachedMemInGibibytes, mem.CachedMemInGibibytes(), delta)
 	})
 
 	t.Run("shared mem", func(t *testing.T) {
-		assert.Equal(t, sharedMemInKibibytes, mem.SharedMemInKibibytes())
-		assert.Equal(t, sharedMemInMebibytes, mem.SharedMemInMebibytes())
-		assert.Equal(t, sharedMemInGibibytes, mem.SharedMemInGibibytes())
+		assert.InDelta(t, sharedMemInKibibytes, mem.SharedMemInKibibytes(), delta)
+		assert.InDelta(t, sharedMemInMebibytes, mem.SharedMemInMebibytes(), delta)
+		assert.InDelta(t, sharedMemInGibibytes, mem.SharedMemInGibibytes(), delta)
 	})
 
 	t.Run("total swap", func(t *testing.T) {
-		assert.Equal(t, totalSwapInKibibytes, mem.TotalSwapInKibibytes())
-		assert.Equal(t, totalSwapInMebibytes, mem.TotalSwapInMebibytes())
-		assert.Equal(t, totalSwapInGibibytes, mem.TotalSwapInGibibytes())
+		assert.InDelta(t, totalSwapInKibibytes, mem.TotalSwapInKibibytes(), delta)
+		assert.InDelta(t, totalSwapInMebibytes, mem.TotalSwapInMebibytes(), delta)
+		assert.InDelta(t, totalSwapInGibibytes, mem.TotalSwapInGibibytes(), delta)
 	})
 
 	t.Run("free swap", func(t *testing.T) {
-		assert.Equal(t, freeSwapInKibibytes, mem.FreeSwapInKibibytes())
-		assert.Equal(t, freeSwapInMebibytes, mem.FreeSwapInMebibytes())
-		assert.Equal(t, freeSwapInGibibytes, mem.FreeSwapInGibibytes())
+		assert.InDelta(t, freeSwapInKibibytes, mem.FreeSwapInKibibytes(), delta)
+		assert.InDelta(t, freeSwapInMebibytes, mem.FreeSwapInMebibytes(), delta)
+		assert.InDelta(t, freeSwapInGibibytes, mem.FreeSwapInGibibytes(), delta)
 	})
 
 	t.Run("used swap", func(t *testing.T) {
-		assert.Equal(t, usedSwapInKibibytes, mem.UsedSwapInKibibytes())
-		assert.Equal(t, usedSwapInMebibytes, mem.UsedSwapInMebibytes())
-		assert.Equal(t, usedSwapInGibibytes, mem.UsedSwapInGibibytes())
+		assert.InDelta(t, usedSwapInKibibytes, mem.UsedSwapInKibibytes(), delta)
+		assert.InDelta(t, usedSwapInMebibytes, mem.UsedSwapInMebibytes(), delta)
+		assert.InDelta(t, usedSwapInGibibytes, mem.UsedSwapInGibibytes(), delta)
 	})
 
 	t.Run("total used", func(t *testing.T) {
-		assert.Equal(t, totalUsedInKibibytes, mem.TotalUsedInKibibytes())
-		assert.Equal(t, totalUsedInMebibytes, mem.TotalUsedInMebibytes())
-		assert.Equal(t, totalUsedInGibibytes, mem.TotalUsedInGibibytes())
+		assert.InDelta(t, totalUsedInKibibytes, mem.TotalUsedInKibibytes(), delta)
+		assert.InDelta(t, totalUsedInMebibytes, mem.TotalUsedInMebibytes(), delta)
+		assert.InDelta(t, totalUsedInGibibytes, mem.TotalUsedInGibibytes(), delta)
 	})
 
 	t.Run("total used", func(t *testing.T) {
-		assert.Equal(t, totalUsedInKibibytes, mem.TotalUsedInKibibytes())
-		assert.Equal(t, totalUsedInMebibytes, mem.TotalUsedInMebibytes())
-		assert.Equal(t, totalUsedInGibibytes, mem.TotalUsedInGibibytes())
+		assert.InDelta(t, totalUsedInKibibytes, mem.TotalUsedInKibibytes(), delta)
+		assert.InDelta(t, totalUsedInMebibytes, mem.TotalUsedInMebibytes(), delta)
+		assert.InDelta(t, totalUsedInGibibytes, mem.TotalUsedInGibibytes(), delta)
 	})
 }

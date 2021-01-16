@@ -8,6 +8,7 @@ import (
 	"golang.org/x/sys/unix"
 )
 
+// test values
 const (
 	domainName = "localhost"
 	machine    = "x86_64"
@@ -18,6 +19,7 @@ const (
 	osName     = "Arch Linux"
 )
 
+// mock function
 func uname(buf *unix.Utsname) error {
 	copy(buf.Domainname[:], []byte(domainName))
 	copy(buf.Machine[:], []byte(machine))

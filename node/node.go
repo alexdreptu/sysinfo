@@ -22,7 +22,7 @@ type Node struct {
 	F          fetchFunc
 }
 
-// Fetch updates the Node struct woth new memory values
+// Fetch updates the Node struct woth new values
 func (n *Node) Fetch() error {
 	utsname := unix.Utsname{}
 

@@ -199,7 +199,7 @@ func (m *Mem) UsedSwapInGibibytes() float64 {
 	return (convert.Unit(m.UsedSwap) * convert.Byte).Gibibytes()
 }
 
-// Fetch updates the Mem struct woth new memory values
+// Fetch updates the Mem struct woth new values
 func (m *Mem) Fetch() error {
 	si := unix.Sysinfo_t{}
 
