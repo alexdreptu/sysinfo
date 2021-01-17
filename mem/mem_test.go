@@ -10,52 +10,52 @@ import (
 
 // test values
 const (
-	totalMemInBytes     float64 = 8589934592
+	totalMemInBytes     uint64  = 8589934592
 	totalMemInKibibytes float64 = 8388608
 	totalMemInMebibytes float64 = 8192
 	totalMemInGibibytes float64 = 8
 
-	totalHighMemInBytes     float64 = 2147483648
+	totalHighMemInBytes     uint64  = 2147483648
 	totalHighMemInKibibytes float64 = 2097152
 	totalHighMemInMebibytes float64 = 2048
 	totalHighMemInGibibytes float64 = 2
 
-	freeMemInBytes     float64 = 1073741824
+	freeMemInBytes     uint64  = 1073741824
 	freeMemInKibibytes float64 = 1048576
 	freeMemInMebibytes float64 = 1024
 	freeMemInGibibytes float64 = 1
 
-	freeHighMemInBytes     float64 = 536870912
+	freeHighMemInBytes     uint64  = 536870912
 	freeHighMemInKibibytes float64 = 524288
 	freeHighMemInMebibytes float64 = 512
 	freeHighMemInGibibytes float64 = 0.5
 
-	availMemInBytes     float64 = 2684354560
+	availMemInBytes     uint64  = 2684354560
 	availMemInKibibytes float64 = 2621440
 	availMemInMebibytes float64 = 2560
 	availMemInGibibytes float64 = 2.5
 
-	bufferMemInBytes     float64 = 2684354560
+	bufferMemInBytes     uint64  = 2684354560
 	bufferMemInKibibytes float64 = 2621440
 	bufferMemInMebibytes float64 = 2560
 	bufferMemInGibibytes float64 = 2.5
 
-	cachedMemInBytes     float64 = 536870912
+	cachedMemInBytes     uint64  = 536870912
 	cachedMemInKibibytes float64 = 524288
 	cachedMemInMebibytes float64 = 512
 	cachedMemInGibibytes float64 = 0.5
 
-	sharedMemInBytes     float64 = 1073741824
+	sharedMemInBytes     uint64  = 1073741824
 	sharedMemInKibibytes float64 = 1048576
 	sharedMemInMebibytes float64 = 1024
 	sharedMemInGibibytes float64 = 1
 
-	totalSwapInBytes     float64 = 12884901888
+	totalSwapInBytes     uint64  = 12884901888
 	totalSwapInKibibytes float64 = 12582912
 	totalSwapInMebibytes float64 = 12288
 	totalSwapInGibibytes float64 = 12
 
-	freeSwapInBytes     float64 = 7516192768
+	freeSwapInBytes     uint64  = 7516192768
 	freeSwapInKibibytes float64 = 7340032
 	freeSwapInMebibytes float64 = 7168
 	freeSwapInGibibytes float64 = 7
@@ -87,16 +87,16 @@ const (
 
 const (
 	procs        uint16 = 1520
-	totalMem     uint64 = uint64(totalMemInBytes)
-	totalHighMem uint64 = uint64(totalHighMemInBytes)
-	freeMem      uint64 = uint64(freeMemInBytes)
-	freeHighMem  uint64 = uint64(freeHighMemInBytes)
-	availMem     uint64 = uint64(availMemInBytes)
-	bufferMem    uint64 = uint64(bufferMemInBytes)
-	cachedMem    uint64 = uint64(cachedMemInBytes)
-	sharedMem    uint64 = uint64(sharedMemInBytes)
-	totalSwap    uint64 = uint64(totalSwapInBytes)
-	freeSwap     uint64 = uint64(freeSwapInBytes)
+	totalMem     uint64 = totalMemInBytes
+	totalHighMem uint64 = totalHighMemInBytes
+	freeMem      uint64 = freeMemInBytes
+	freeHighMem  uint64 = freeHighMemInBytes
+	availMem     uint64 = availMemInBytes
+	bufferMem    uint64 = bufferMemInBytes
+	cachedMem    uint64 = cachedMemInBytes
+	sharedMem    uint64 = sharedMemInBytes
+	totalSwap    uint64 = totalSwapInBytes
+	freeSwap     uint64 = freeSwapInBytes
 )
 
 const delta = 0.01
