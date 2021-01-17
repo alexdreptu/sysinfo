@@ -24,12 +24,11 @@ type Node struct {
 
 // Fetch updates the Node struct woth new values
 func (n *Node) Fetch() error {
-	utsname := unix.Utsname{}
-
 	if n.F == nil {
 		n.F = unix.Uname
 	}
 
+	utsname := unix.Utsname{}
 	if err := n.F(&utsname); err != nil {
 		return err
 	}
@@ -68,4 +67,14 @@ func (n *Node) readOSName() error {
 	}
 
 	return scanner.Err()
+}
+
+func New() (*Node, error) {
+	node := &Node{}
+
+	if err := node.Fetch(); err != nil {
+		return &Node{}, err
+	}
+
+	return node, nil
 }
