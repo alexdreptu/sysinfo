@@ -202,8 +202,11 @@ func readSingleValueFile(path string) (string, error) {
 	return strings.TrimSpace(string(content)), nil
 }
 
-func New() *CPU {
+func New() (*CPU, error) {
 	cpu := &CPU{}
-	cpu.Fetch()
-	return cpu
+	if err := cpu.Fetch(); err != nil {
+		return cpu, err
+	}
+
+	return cpu, nil
 }

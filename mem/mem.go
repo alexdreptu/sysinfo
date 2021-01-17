@@ -201,12 +201,11 @@ func (m *Mem) UsedSwapInGibibytes() float64 {
 
 // Fetch updates the Mem struct woth new values
 func (m *Mem) Fetch() error {
-	si := unix.Sysinfo_t{}
-
 	if m.F == nil {
 		m.F = unix.Sysinfo
 	}
 
+	si := unix.Sysinfo_t{}
 	if err := m.F(&si); err != nil {
 		return err
 	}
@@ -274,8 +273,12 @@ func (m *Mem) readMeminfo() error {
 	return scanner.Err()
 }
 
-func New() *Mem {
+func New() (*Mem, error) {
 	mem := &Mem{}
-	mem.Fetch()
-	return mem
+
+	if err := mem.Fetch(); err != nil {
+		return &Mem{}, err
+	}
+
+	return mem, nil
 }
