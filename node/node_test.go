@@ -12,7 +12,7 @@ import (
 const (
 	domainName = "localhost"
 	machine    = "x86_64"
-	nodeNname  = "SplinterProject"
+	nodeName   = "SplinterProject"
 	release    = "5.10-7.arch1-1"
 	sysName    = "Linux"
 	version    = "#1 SMP PREEMPT Wed, 13 Jan 2021 12:02:01 +0000"
@@ -23,7 +23,7 @@ const (
 func uname(buf *unix.Utsname) error {
 	copy(buf.Domainname[:], []byte(domainName))
 	copy(buf.Machine[:], []byte(machine))
-	copy(buf.Nodename[:], []byte(nodeNname))
+	copy(buf.Nodename[:], []byte(nodeName))
 	copy(buf.Release[:], []byte(release))
 	copy(buf.Sysname[:], []byte(sysName))
 	copy(buf.Version[:], []byte(version))
@@ -38,7 +38,7 @@ func TestNode(t *testing.T) {
 	assert.NoError(t, node.Fetch())
 	assert.Equal(t, domainName, node.DomainName)
 	assert.Equal(t, machine, node.Machine)
-	assert.Equal(t, nodeNname, node.NodeName)
+	assert.Equal(t, nodeName, node.NodeName)
 	assert.Equal(t, release, node.Release)
 	assert.Equal(t, sysName, node.SysName)
 	assert.Equal(t, version, node.Version)
