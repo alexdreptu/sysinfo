@@ -52,12 +52,11 @@ func (f *FS) UsedSpaceInGibibytes() float64 {
 
 // Fetch updates the FS struct woth new values
 func (f *FS) Fetch(path string) error {
-	statfs := unix.Statfs_t{}
-
 	if f.F == nil {
 		f.F = unix.Statfs
 	}
 
+	statfs := unix.Statfs_t{}
 	if err := f.F(path, &statfs); err != nil {
 		return err
 	}
@@ -68,4 +67,14 @@ func (f *FS) Fetch(path string) error {
 		(uint64(statfs.Bsize) * statfs.Bfree)
 
 	return nil
+}
+
+func New(path string) (*FS, error) {
+	fs := &FS{}
+
+	if err := fs.Fetch(path); err != nil {
+		return &FS{}, err
+	}
+
+	return fs, nil
 }
