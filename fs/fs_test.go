@@ -10,10 +10,10 @@ import (
 
 // test values
 const (
-	bsize  float64 = 4096
-	blocks float64 = 14261319
-	bavail float64 = 1313231
-	bfree  float64 = 2618397
+	bsize  int64  = 4096
+	blocks uint64 = 14261319
+	bavail uint64 = 1313231
+	bfree  uint64 = 2618397
 )
 
 const (
@@ -34,10 +34,10 @@ const delta = 0.01
 
 // mock function
 func statfs(path string, buf *unix.Statfs_t) error {
-	buf.Bsize = int64(bsize)
-	buf.Blocks = uint64(blocks)
-	buf.Bavail = uint64(bavail)
-	buf.Bfree = uint64(bfree)
+	buf.Bsize = bsize
+	buf.Blocks = blocks
+	buf.Bavail = bavail
+	buf.Bfree = bfree
 	return nil
 }
 
