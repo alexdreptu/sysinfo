@@ -203,22 +203,18 @@ func (m *Mem) UsedSwapInGibibytes() float64 {
 func (m *Mem) Fetch() error {
 	si := unix.Sysinfo_t{}
 
-	var availMem, cachedMem uint64
-	var err error
-
 	if m.F == nil {
 		m.F = unix.Sysinfo
-		availMem, cachedMem, err = readMeminfo()
-		if err != nil {
-			return err
-		}
-
-		m.AvailMem = availMem
-		m.CachedMem = cachedMem
 	}
 
 	if err := m.F(&si); err != nil {
 		return err
+	}
+
+	if m.AvailMem == 0 && m.CachedMem == 0 {
+		if err := m.readMeminfo(); err != nil {
+			return err
+		}
 	}
 
 	m.Procs = si.Procs
@@ -239,12 +235,10 @@ func (m *Mem) Fetch() error {
 	return nil
 }
 
-func readMeminfo() (uint64, uint64, error) {
-	var availMem, cachedMem uint64
-
+func (m *Mem) readMeminfo() error {
 	file, err := os.Open("/proc/meminfo")
 	if err != nil {
-		return 0, 0, err
+		return err
 	}
 	defer file.Close()
 
@@ -264,24 +258,20 @@ func readMeminfo() (uint64, uint64, error) {
 		case "MemAvailable":
 			n, err := strconv.Atoi(value)
 			if err != nil {
-				return 0, 0, err
+				return err
 			}
-			availMem = uint64((convert.Unit(n) * convert.Kibibyte).Bytes())
+			m.AvailMem = uint64((convert.Unit(n) * convert.Kibibyte).Bytes())
 
 		case "Cached":
 			n, err := strconv.Atoi(value)
 			if err != nil {
-				return 0, 0, err
+				return err
 			}
-			cachedMem = uint64((convert.Unit(n) * convert.Kibibyte).Bytes())
+			m.CachedMem = uint64((convert.Unit(n) * convert.Kibibyte).Bytes())
 		}
 	}
 
-	if err := scanner.Err(); err != nil {
-		return 0, 0, err
-	}
-
-	return availMem, cachedMem, nil
+	return scanner.Err()
 }
 
 func New() *Mem {
