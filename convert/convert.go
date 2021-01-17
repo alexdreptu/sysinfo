@@ -1,10 +1,5 @@
 package convert
 
-import (
-	"io/ioutil"
-	"strings"
-)
-
 type (
 	Unit float64
 	Size Unit
@@ -47,12 +42,4 @@ func (u Unit) Megahertz() float64 {
 
 func (u Unit) Gigahertz() float64 {
 	return float64(u / Gigahertz)
-}
-
-func ReadSingleValueFile(path string) (string, error) {
-	content, err := ioutil.ReadFile(path)
-	if err != nil {
-		return "", err
-	}
-	return strings.TrimSpace(string(content)), nil
 }

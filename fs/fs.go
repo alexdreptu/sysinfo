@@ -66,7 +66,6 @@ func (f *FS) Fetch(path string) error {
 	f.Free = uint64(statfs.Bsize) * statfs.Bavail
 	f.Used = (uint64(statfs.Bsize) * statfs.Blocks) -
 		(uint64(statfs.Bsize) * statfs.Bfree)
-	// spew.Dump(statfs)
 
 	return nil
 }
