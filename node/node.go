@@ -26,20 +26,18 @@ type Node struct {
 func (n *Node) Fetch() error {
 	utsname := unix.Utsname{}
 
-	var osName string
-	var err error
-
 	if n.F == nil {
 		n.F = unix.Uname
-		osName, err = readOSName()
-		if err != nil {
-			return err
-		}
-		n.OSName = osName
 	}
 
-	if err = n.F(&utsname); err != nil {
+	if err := n.F(&utsname); err != nil {
 		return err
+	}
+
+	if n.OSName == "" {
+		if err := n.readOSName(); err != nil {
+			return err
+		}
 	}
 
 	n.DomainName = string(utsname.Domainname[:bytes.IndexByte(utsname.Domainname[:], 0)])
@@ -52,27 +50,22 @@ func (n *Node) Fetch() error {
 	return nil
 }
 
-func readOSName() (string, error) {
+func (n *Node) readOSName() error {
 	file, err := os.Open("/etc/os-release")
 	if err != nil {
-		return "", err
+		return err
 	}
 	defer file.Close()
 
-	var osName string
 	scanner := bufio.NewScanner(file)
 
 	for scanner.Scan() {
 		line := scanner.Text()
 		if strings.Contains(line, "NAME") {
-			osName = strings.Trim(strings.Split(line, "=")[1], "\"")
+			n.OSName = strings.Trim(strings.Split(line, "=")[1], "\"")
 			break
 		}
 	}
 
-	if err := scanner.Err(); err != nil {
-		return "", err
-	}
-
-	return osName, nil
+	return scanner.Err()
 }
