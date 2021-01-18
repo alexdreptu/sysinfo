@@ -58,6 +58,10 @@ func (c *CPU) MaxFreqInGigahertz() float64 {
 	return (convert.Unit(c.MaxFreq) * convert.Kilohertz).Gigahertz()
 }
 
+func (c *CPU) FlagsAsString() string {
+	return strings.Join(c.Flags, ", ")
+}
+
 // Fetch updates the CPU struct woth new values
 func (c *CPU) Fetch() error {
 	if !c.M {
@@ -65,7 +69,7 @@ func (c *CPU) Fetch() error {
 			return nil
 		}
 
-		if err := c.readCpuinfo(); err != nil {
+		if err := c.readCPUInfo(); err != nil {
 			return err
 		}
 
@@ -107,7 +111,7 @@ func (c *CPU) readCPUFreq(scale freqScale) error {
 	return nil
 }
 
-func (c *CPU) readCpuinfo() error {
+func (c *CPU) readCPUInfo() error {
 	file, err := os.Open(cpuInfoPath)
 	if err != nil {
 		return err
