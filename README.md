@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/alexdreptu/sysinfo.svg?branch=master)](https://travis-ci.org/alexdreptu/sysinfo)
-[![GoDoc](https://pkg.go.dev/badge/github.com/alexdreptu/sysinfo)](https://pkg.go.dev/github.com/alexdreptu/sysinfo)
+[![GoDev](https://pkg.go.dev/badge/github.com/alexdreptu/sysinfo)](https://pkg.go.dev/github.com/alexdreptu/sysinfo)
 [![Platform](https://img.shields.io/badge/platform-Linux-5272b4.svg)](https://archlinux.org/)
 [![License](https://img.shields.io/badge/license-MIT-5272b4.svg)](https://github.com/alexdreptu/sysinfo/blob/master/LICENSE)
 
@@ -273,26 +273,38 @@ import (
 func main() {
      // convert bytes
     bytes := 8267812044.8
-    fmt.Printf("%.2f Bytes -> %.2f Kibibytes\n", bytes, (convert.Unit(bytes) * convert.Byte).Kibibytes())
-    fmt.Printf("%.2f Bytes -> %.2f Mebibytes\n", bytes, (convert.Unit(bytes) * convert.Byte).Mebibytes())
-    fmt.Printf("%.2f Bytes -> %.2f Gibibytes\n", bytes, (convert.Unit(bytes) * convert.Byte).Gibibytes())
+    fmt.Printf("%.2f Bytes -> %.2f Kibibytes\n",
+        bytes, (convert.Unit(bytes) * convert.Byte).Kibibytes())
+    fmt.Printf("%.2f Bytes -> %.2f Mebibytes\n",
+        bytes, (convert.Unit(bytes) * convert.Byte).Mebibytes())
+    fmt.Printf("%.2f Bytes -> %.2f Gibibytes\n",
+        bytes, (convert.Unit(bytes) * convert.Byte).Gibibytes())
 
     // convert kibibytes
     kibibytes := 8074035.2
-    fmt.Printf("%.2f Kibibytes -> %.2f Bytes\n", kibibytes, (convert.Unit(kibibytes) * convert.Kibibyte).Bytes())
-    fmt.Printf("%.2f Kibibytes -> %.2f Mebibytes\n", kibibytes, (convert.Unit(kibibytes) * convert.Kibibyte).Mebibytes())
-    fmt.Printf("%.2f Kibibytes -> %.2f Gibibytes\n", kibibytes, (convert.Unit(kibibytes) * convert.Kibibyte).Gibibytes())
+    fmt.Printf("%.2f Kibibytes -> %.2f Bytes\n",
+        kibibytes, (convert.Unit(kibibytes) * convert.Kibibyte).Bytes())
+    fmt.Printf("%.2f Kibibytes -> %.2f Mebibytes\n",
+        kibibytes, (convert.Unit(kibibytes) * convert.Kibibyte).Mebibytes())
+    fmt.Printf("%.2f Kibibytes -> %.2f Gibibytes\n",
+        kibibytes, (convert.Unit(kibibytes) * convert.Kibibyte).Gibibytes())
 
     // convert mebibytes
     mebibytes := 7884.8
-    fmt.Printf("%.2f Mebibytes -> %.2f Bytes\n", mebibytes, (convert.Unit(mebibytes) * convert.Mebibyte).Bytes())
-    fmt.Printf("%.2f Mebibytes -> %.2f Kibibytes\n", mebibytes, (convert.Unit(mebibytes) * convert.Mebibyte).Kibibytes())
-    fmt.Printf("%.2f Mebibytes -> %.2f Gibibytes\n", mebibytes, (convert.Unit(mebibytes) * convert.Mebibyte).Gibibytes())
+    fmt.Printf("%.2f Mebibytes -> %.2f Bytes\n",
+        mebibytes, (convert.Unit(mebibytes) * convert.Mebibyte).Bytes())
+    fmt.Printf("%.2f Mebibytes -> %.2f Kibibytes\n",
+        mebibytes, (convert.Unit(mebibytes) * convert.Mebibyte).Kibibytes())
+    fmt.Printf("%.2f Mebibytes -> %.2f Gibibytes\n",
+        mebibytes, (convert.Unit(mebibytes) * convert.Mebibyte).Gibibytes())
 
     // convert gibibytes
     gibibytes := 7.7
-    fmt.Printf("%.2f Gibibytes -> %.2f Bytes\n", gibibytes, (convert.Unit(gibibytes) * convert.Gibibyte).Bytes())
-    fmt.Printf("%.2f Gibibytes -> %.2f Kibibytes\n", gibibytes, (convert.Unit(gibibytes) * convert.Gibibyte).Kibibytes())
-    fmt.Printf("%.2f Gibibytes -> %.2f Mebibytes\n", gibibytes, (convert.Unit(gibibytes) * convert.Gibibyte).Mebibytes())
+    fmt.Printf("%.2f Gibibytes -> %.2f Bytes\n",
+        gibibytes, (convert.Unit(gibibytes) * convert.Gibibyte).Bytes())
+    fmt.Printf("%.2f Gibibytes -> %.2f Kibibytes\n",
+        gibibytes, (convert.Unit(gibibytes) * convert.Gibibyte).Kibibytes())
+    fmt.Printf("%.2f Gibibytes -> %.2f Mebibytes\n",
+        gibibytes, (convert.Unit(gibibytes) * convert.Gibibyte).Mebibytes())
 }
 ```
