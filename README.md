@@ -1,6 +1,6 @@
-[![Build Status](https://travis-ci.org/alexdreptu/sysinfo.svg?branch=master)](https://travis-ci.org/alexdreptu/sysinfo)
+[![Build Status](https://github.com/alexdreptu/sysinfo/workflows/Build/badge.svg)](https://github.com/alexdreptu/sysinfo/actions)
 [![GoDev](https://pkg.go.dev/badge/github.com/alexdreptu/sysinfo)](https://pkg.go.dev/github.com/alexdreptu/sysinfo)
-[![Platform](https://img.shields.io/badge/platform-Linux-5272b4.svg)](https://archlinux.org/)
+[![Platform](https://img.shields.io/badge/platform-Linux-5272b4.svg)](https://www.linuxfoundation.org/)
 [![License](https://img.shields.io/badge/license-MIT-5272b4.svg)](https://github.com/alexdreptu/sysinfo/blob/master/LICENSE)
 
 #### This module is not meant to be a complete solution, rather it's meant to get just the minimum system information required by [archey-go](https://github.com/alexdreptu/archey-go). If you're looking for something more complete, then you might want to take a look at [gopsutil](https://github.com/shirou/gopsutil)
@@ -306,5 +306,12 @@ func main() {
         gibibytes, (convert.Unit(gibibytes) * convert.Gibibyte).Kibibytes())
     fmt.Printf("%.2f Gibibytes -> %.2f Mebibytes\n",
         gibibytes, (convert.Unit(gibibytes) * convert.Gibibyte).Mebibytes())
+    
+    // convert kilohertz
+    kilohertz := 3900000
+    fmt.Printf("%v Kilohertz -> %v Megahertz\n",
+        kilohertz, (convert.Unit(kilohertz) * convert.Kilohertz).Megahertz())
+    fmt.Printf("%v Kilohertz -> %v Gigahertz\n",
+        kilohertz, (convert.Unit(kilohertz) * convert.Kilohertz).Gigahertz())
 }
 ```

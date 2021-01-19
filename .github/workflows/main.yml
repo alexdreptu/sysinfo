@@ -1,4 +1,4 @@
-name: Build and test Go
+name: Build
 on: [push, pull_request]
 
 jobs:
@@ -33,5 +33,6 @@ jobs:
 
       - name: Staticcheck
         run: |
+          export PATH=${PATH}:`go env GOPATH`/bin
           go get -u honnef.co/go/tools/cmd/staticcheck
           staticcheck ./...
