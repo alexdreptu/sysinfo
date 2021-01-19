@@ -45,5 +45,4 @@ func TestCPUInfo(t *testing.T) {
 		assert.InDelta(t, maxFreqInMegahertz, cpu.MaxFreqInMegahertz(), delta)
 		assert.InDelta(t, maxFreqInGigahertz, cpu.MaxFreqInGigahertz(), delta)
 	})
-
 }

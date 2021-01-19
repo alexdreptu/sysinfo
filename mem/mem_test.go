@@ -213,10 +213,10 @@ func TestMemConversion(t *testing.T) {
 		assert.InDelta(t, usedSwapInGibibytes, mem.UsedSwapInGibibytes(), delta)
 	})
 
-	t.Run("total used", func(t *testing.T) {
-		assert.InDelta(t, totalUsedInKibibytes, mem.TotalUsedInKibibytes(), delta)
-		assert.InDelta(t, totalUsedInMebibytes, mem.TotalUsedInMebibytes(), delta)
-		assert.InDelta(t, totalUsedInGibibytes, mem.TotalUsedInGibibytes(), delta)
+	t.Run("total used mem", func(t *testing.T) {
+		assert.InDelta(t, totalUsedMemInKibibytes, mem.TotalUsedMemInKibibytes(), delta)
+		assert.InDelta(t, totalUsedMemInMebibytes, mem.TotalUsedMemInMebibytes(), delta)
+		assert.InDelta(t, totalUsedMemInGibibytes, mem.TotalUsedMemInGibibytes(), delta)
 	})
 
 	t.Run("total used", func(t *testing.T) {
