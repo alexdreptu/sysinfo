@@ -1,5 +1,5 @@
 [![Build Status](https://github.com/alexdreptu/sysinfo/workflows/Build/badge.svg)](https://github.com/alexdreptu/sysinfo/actions)
-[![Coverage Status](https://coveralls.io/repos/github/alexdreptu/sysinfo/badge.svg?branch=master)](https://coveralls.io/github/alexdreptu/sysinfo?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/alexdreptu/sysinfo/badge.svg?branch=master&kill_cache=1)](https://coveralls.io/github/alexdreptu/sysinfo?branch=master)
 [![GoDev](https://pkg.go.dev/badge/github.com/alexdreptu/sysinfo)](https://pkg.go.dev/github.com/alexdreptu/sysinfo)
 [![Platform](https://img.shields.io/badge/platform-Linux-5272b4.svg)](https://www.linuxfoundation.org/)
 [![License](https://img.shields.io/badge/license-MIT-5272b4.svg)](https://github.com/alexdreptu/sysinfo/blob/master/LICENSE)
