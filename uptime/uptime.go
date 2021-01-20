@@ -89,10 +89,8 @@ func (u Uptime) SinceFormat(layout string) string {
 }
 
 // Fetch updates the Uptime struct woth new values
-func (u *Uptime) Fetch(sep ...byte) error {
-	if len(sep) != 0 {
-		u.Sep = sep[0]
-	} else {
+func (u *Uptime) Fetch() error {
+	if u.Sep == 0 {
 		u.Sep = ':'
 	}
 
@@ -150,14 +148,16 @@ func formatInt(buf []byte, v uint64) int {
 	return w
 }
 
-func New(sep ...byte) *Uptime {
+func New(sep ...byte) (*Uptime, error) {
 	uptime := &Uptime{}
 
 	if len(sep) != 0 {
-		uptime.Fetch(sep[0])
-	} else {
-		uptime.Fetch()
+		uptime.Sep = sep[0]
 	}
 
-	return uptime
+	if err := uptime.Fetch(); err != nil {
+		return &Uptime{}, err
+	}
+
+	return uptime, nil
 }
