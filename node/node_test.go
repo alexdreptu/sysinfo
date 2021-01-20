@@ -5,6 +5,7 @@ import (
 
 	. "github.com/alexdreptu/sysinfo/node"
 	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 	"golang.org/x/sys/unix"
 )
 
@@ -35,7 +36,7 @@ func TestNode(t *testing.T) {
 	node.F = uname
 	node.OSName = osName
 
-	assert.NoError(t, node.Fetch())
+	require.NoError(t, node.Fetch())
 	assert.Equal(t, domainName, node.DomainName)
 	assert.Equal(t, machine, node.Machine)
 	assert.Equal(t, nodeName, node.NodeName)

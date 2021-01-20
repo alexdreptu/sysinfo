@@ -5,6 +5,7 @@ import (
 
 	. "github.com/alexdreptu/sysinfo/mem"
 	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 	"golang.org/x/sys/unix"
 )
 
@@ -121,7 +122,7 @@ func TestMemConversion(t *testing.T) {
 	mem.AvailMem = availMem
 	mem.CachedMem = cachedMem
 
-	assert.NoError(t, mem.Fetch())
+	require.NoError(t, mem.Fetch())
 
 	assert.Equal(t, procs, mem.Procs)
 	assert.Equal(t, totalMem, mem.TotalMem)

@@ -5,6 +5,7 @@ import (
 
 	. "github.com/alexdreptu/sysinfo/cpu"
 	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 )
 
 // test values
@@ -30,7 +31,7 @@ func TestCPUInfo(t *testing.T) {
 	cpu.MinFreq = minFreqInKilohertz
 	cpu.MaxFreq = maxFreqInKilohertz
 
-	assert.NoError(t, cpu.Fetch()) // unnecessary for now
+	require.NoError(t, cpu.Fetch()) // unnecessary for now
 
 	t.Run("cache size", func(t *testing.T) {
 		assert.InDelta(t, cacheSizeInMebibytes, cpu.CacheSizeInMebibytes(), delta)

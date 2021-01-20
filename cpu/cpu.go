@@ -208,6 +208,7 @@ func readSingleValueFile(path string) (string, error) {
 
 func New() (*CPU, error) {
 	cpu := &CPU{}
+
 	if err := cpu.Fetch(); err != nil {
 		return cpu, err
 	}
