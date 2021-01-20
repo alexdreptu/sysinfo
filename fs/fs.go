@@ -7,7 +7,7 @@ import (
 	"golang.org/x/sys/unix"
 )
 
-var ErrMissingPath = errors.New("Path is missing")
+var ErrMissingPath = errors.New("path is missing")
 
 type fetchFunc func(path string, buf *unix.Statfs_t) error
 

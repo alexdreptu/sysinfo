@@ -3,7 +3,6 @@ package fs_test
 import (
 	"testing"
 
-	"github.com/alexdreptu/sysinfo/fs"
 	. "github.com/alexdreptu/sysinfo/fs"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -44,10 +43,10 @@ func statfs(path string, buf *unix.Statfs_t) error {
 }
 
 func TestFSNew(t *testing.T) {
-	_, err := fs.New("")
+	_, err := New("")
 	require.Error(t, err)
 
-	_, err = fs.New("/")
+	_, err = New("/")
 	require.NoError(t, err)
 }
 
