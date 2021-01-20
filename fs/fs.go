@@ -1,9 +1,13 @@
 package fs
 
 import (
+	"errors"
+
 	"github.com/alexdreptu/sysinfo/convert"
 	"golang.org/x/sys/unix"
 )
+
+var ErrMissingPath = errors.New("Path is missing")
 
 type fetchFunc func(path string, buf *unix.Statfs_t) error
 
@@ -11,6 +15,7 @@ type FS struct {
 	Total uint64
 	Free  uint64
 	Used  uint64
+	Path  string
 	F     fetchFunc
 }
 
@@ -51,13 +56,17 @@ func (f *FS) UsedSpaceInGibibytes() float64 {
 }
 
 // Fetch updates the FS struct woth new values
-func (f *FS) Fetch(path string) error {
+func (f *FS) Fetch() error {
 	if f.F == nil {
 		f.F = unix.Statfs
 	}
 
+	if f.Path == "" {
+		return ErrMissingPath
+	}
+
 	statfs := unix.Statfs_t{}
-	if err := f.F(path, &statfs); err != nil {
+	if err := f.F(f.Path, &statfs); err != nil {
 		return err
 	}
 
@@ -70,9 +79,9 @@ func (f *FS) Fetch(path string) error {
 }
 
 func New(path string) (*FS, error) {
-	fs := &FS{}
+	fs := &FS{Path: path}
 
-	if err := fs.Fetch(path); err != nil {
+	if err := fs.Fetch(); err != nil {
 		return &FS{}, err
 	}
 
