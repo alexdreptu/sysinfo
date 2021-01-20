@@ -68,8 +68,8 @@ import (
 ```
 
 ```Go
-rootfs := &fs.FS{}
-if err := rootfs.Get("/"); err != nil {
+rootfs := &fs.FS{Path: "/"}
+if err := rootfs.Fetch(); err != nil {
     fmt.Fprintln(os.Stderr, err)
     os.Exit(1)
 }
