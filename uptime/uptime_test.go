@@ -7,6 +7,7 @@ import (
 
 	. "github.com/alexdreptu/sysinfo/uptime"
 	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 	"golang.org/x/sys/unix"
 )
 
@@ -29,30 +30,35 @@ func sysinfo(info *unix.Sysinfo_t) error {
 }
 
 func TestUptimeNewWithSeparator(t *testing.T) {
-	uptime := New(sep)
+	uptime, err := New(sep)
+	require.NoError(t, err)
 	assert.True(t, strings.Contains(uptime.String(), string(sep)))
 
-	uptime = New()
+	uptime, err = New()
+	require.NoError(t, err)
 	assert.True(t, strings.Contains(uptime.String(), ":"))
 }
 
 func TestUptime(t *testing.T) {
-	uptime := &Uptime{}
-	uptime.F = sysinfo
-
 	t.Run("fetch with custom separator", func(t *testing.T) {
+		uptime := &Uptime{Sep: sep}
+		uptime.F = sysinfo
+
 		uptimeFormat := fmt.Sprintf("%dd%s%dh%s%dm%s%ds", uptimeDays, string(sep),
 			uptimenHours, string(sep), uptimeMinutes, string(sep), uptimeSeconds)
 
-		assert.NoError(t, uptime.Fetch(sep))
+		require.NoError(t, uptime.Fetch())
 		assert.Equal(t, uptimeFormat, uptime.String())
 	})
 
 	t.Run("fetch with default separator", func(t *testing.T) {
+		uptime := &Uptime{}
+		uptime.F = sysinfo
+
 		uptimeFormat := fmt.Sprintf("%dd:%dh:%dm:%ds", uptimeDays, uptimenHours,
 			uptimeMinutes, uptimeSeconds)
 
-		assert.NoError(t, uptime.Fetch())
+		require.NoError(t, uptime.Fetch())
 		assert.Equal(t, uptimeFormat, uptime.String())
 	})
 }
