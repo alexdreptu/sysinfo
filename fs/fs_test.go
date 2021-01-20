@@ -3,8 +3,10 @@ package fs_test
 import (
 	"testing"
 
+	"github.com/alexdreptu/sysinfo/fs"
 	. "github.com/alexdreptu/sysinfo/fs"
 	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 	"golang.org/x/sys/unix"
 )
 
@@ -41,11 +43,22 @@ func statfs(path string, buf *unix.Statfs_t) error {
 	return nil
 }
 
+func TestFSNew(t *testing.T) {
+	_, err := fs.New("")
+	require.Error(t, err)
+
+	_, err = fs.New("/")
+	require.NoError(t, err)
+}
+
 func TestFS(t *testing.T) {
-	fs := &FS{}
+	fs := &FS{Path: ""}
+	require.Error(t, fs.Fetch())
+
+	fs = &FS{Path: "/"}
 	fs.F = statfs
 
-	assert.NoError(t, fs.Fetch(""))
+	require.NoError(t, fs.Fetch())
 
 	assert.InDelta(t, totalSpaceInKibibytes, fs.TotalSpaceInKibibytes(), delta)
 	assert.InDelta(t, totalSpaceInMebibytes, fs.TotalSpaceInMebibytes(), delta)
