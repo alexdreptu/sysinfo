@@ -39,23 +39,23 @@ const (
 )
 
 func (c *CPU) CacheSizeInMebibytes() float64 {
-	return (convert.Unit(c.CacheSize) * convert.Kibibyte).Mebibytes()
+	return (convert.Size(c.CacheSize) * convert.Kibibyte).Mebibytes()
 }
 
 func (c *CPU) MinFreqInMegahertz() float64 {
-	return (convert.Unit(c.MinFreq) * convert.Kilohertz).Megahertz()
+	return (convert.Frequency(c.MinFreq) * convert.Kilohertz).Megahertz()
 }
 
 func (c *CPU) MinFreqInGigahertz() float64 {
-	return (convert.Unit(c.MinFreq) * convert.Kilohertz).Gigahertz()
+	return (convert.Frequency(c.MinFreq) * convert.Kilohertz).Gigahertz()
 }
 
 func (c *CPU) MaxFreqInMegahertz() float64 {
-	return (convert.Unit(c.MaxFreq) * convert.Kilohertz).Megahertz()
+	return (convert.Frequency(c.MaxFreq) * convert.Kilohertz).Megahertz()
 }
 
 func (c *CPU) MaxFreqInGigahertz() float64 {
-	return (convert.Unit(c.MaxFreq) * convert.Kilohertz).Gigahertz()
+	return (convert.Frequency(c.MaxFreq) * convert.Kilohertz).Gigahertz()
 }
 
 func (c *CPU) FlagsAsString() string {

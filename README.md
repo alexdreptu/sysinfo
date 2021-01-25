@@ -275,44 +275,46 @@ func main() {
      // convert bytes
     bytes := 8267812044.8
     fmt.Printf("%.2f Bytes -> %.2f Kibibytes\n",
-        bytes, (convert.Unit(bytes) * convert.Byte).Kibibytes())
+        bytes, (convert.Size(bytes) * convert.Byte).Kibibytes())
     fmt.Printf("%.2f Bytes -> %.2f Mebibytes\n",
-        bytes, (convert.Unit(bytes) * convert.Byte).Mebibytes())
+        bytes, (convert.Size(bytes) * convert.Byte).Mebibytes())
     fmt.Printf("%.2f Bytes -> %.2f Gibibytes\n",
-        bytes, (convert.Unit(bytes) * convert.Byte).Gibibytes())
+        bytes, (convert.Size(bytes) * convert.Byte).Gibibytes())
 
     // convert kibibytes
     kibibytes := 8074035.2
     fmt.Printf("%.2f Kibibytes -> %.2f Bytes\n",
-        kibibytes, (convert.Unit(kibibytes) * convert.Kibibyte).Bytes())
+        kibibytes, (convert.Size(kibibytes) * convert.Kibibyte).Bytes())
     fmt.Printf("%.2f Kibibytes -> %.2f Mebibytes\n",
-        kibibytes, (convert.Unit(kibibytes) * convert.Kibibyte).Mebibytes())
+        kibibytes, (convert.Size(kibibytes) * convert.Kibibyte).Mebibytes())
     fmt.Printf("%.2f Kibibytes -> %.2f Gibibytes\n",
-        kibibytes, (convert.Unit(kibibytes) * convert.Kibibyte).Gibibytes())
+        kibibytes, (convert.Size(kibibytes) * convert.Kibibyte).Gibibytes())
 
     // convert mebibytes
     mebibytes := 7884.8
     fmt.Printf("%.2f Mebibytes -> %.2f Bytes\n",
-        mebibytes, (convert.Unit(mebibytes) * convert.Mebibyte).Bytes())
+        mebibytes, (convert.Size(mebibytes) * convert.Mebibyte).Bytes())
     fmt.Printf("%.2f Mebibytes -> %.2f Kibibytes\n",
-        mebibytes, (convert.Unit(mebibytes) * convert.Mebibyte).Kibibytes())
+        mebibytes, (convert.Size(mebibytes) * convert.Mebibyte).Kibibytes())
     fmt.Printf("%.2f Mebibytes -> %.2f Gibibytes\n",
-        mebibytes, (convert.Unit(mebibytes) * convert.Mebibyte).Gibibytes())
+        mebibytes, (convert.Size(mebibytes) * convert.Mebibyte).Gibibytes())
 
     // convert gibibytes
     gibibytes := 7.7
     fmt.Printf("%.2f Gibibytes -> %.2f Bytes\n",
-        gibibytes, (convert.Unit(gibibytes) * convert.Gibibyte).Bytes())
+        gibibytes, (convert.Size(gibibytes) * convert.Gibibyte).Bytes())
     fmt.Printf("%.2f Gibibytes -> %.2f Kibibytes\n",
-        gibibytes, (convert.Unit(gibibytes) * convert.Gibibyte).Kibibytes())
+        gibibytes, (convert.Size(gibibytes) * convert.Gibibyte).Kibibytes())
     fmt.Printf("%.2f Gibibytes -> %.2f Mebibytes\n",
-        gibibytes, (convert.Unit(gibibytes) * convert.Gibibyte).Mebibytes())
+        gibibytes, (convert.Size(gibibytes) * convert.Gibibyte).Mebibytes())
     
     // convert kilohertz
     kilohertz := 3900000
+    fmt.Printf("%v Kilohertz -> %v Herz\n",
+        kilohertz, (convert.Frequency(kilohertz) * convert.Kilohertz).Hertz())
     fmt.Printf("%v Kilohertz -> %v Megahertz\n",
-        kilohertz, (convert.Unit(kilohertz) * convert.Kilohertz).Megahertz())
+        kilohertz, (convert.Frequency(kilohertz) * convert.Kilohertz).Megahertz())
     fmt.Printf("%v Kilohertz -> %v Gigahertz\n",
-        kilohertz, (convert.Unit(kilohertz) * convert.Kilohertz).Gigahertz())
+        kilohertz, (convert.Frequency(kilohertz) * convert.Kilohertz).Gigahertz())
 }
 ```

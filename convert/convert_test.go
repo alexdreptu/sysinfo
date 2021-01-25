@@ -21,7 +21,7 @@ func TestBytesToKibibytes(t *testing.T) {
 	}
 
 	for _, tc := range testCases {
-		assert.Equal(t, tc.expected, (Unit(tc.value) * Byte).Kibibytes())
+		assert.Equal(t, tc.expected, (Size(tc.value) * Byte).Kibibytes())
 	}
 }
 
@@ -34,7 +34,7 @@ func TestBytesToMebibytes(t *testing.T) {
 	}
 
 	for _, tc := range testCases {
-		assert.Equal(t, tc.expected, (Unit(tc.value) * Byte).Mebibytes())
+		assert.Equal(t, tc.expected, (Size(tc.value) * Byte).Mebibytes())
 	}
 }
 
@@ -47,7 +47,7 @@ func TestBytesToGibibytes(t *testing.T) {
 	}
 
 	for _, tc := range testCases {
-		assert.Equal(t, tc.expected, (Unit(tc.value) * Byte).Gibibytes())
+		assert.Equal(t, tc.expected, (Size(tc.value) * Byte).Gibibytes())
 	}
 }
 
@@ -60,7 +60,7 @@ func TestKibibytesToBytes(t *testing.T) {
 	}
 
 	for _, tc := range testCases {
-		assert.Equal(t, tc.expected, (Unit(tc.value) * Kibibyte).Bytes())
+		assert.Equal(t, tc.expected, (Size(tc.value) * Kibibyte).Bytes())
 	}
 }
 
@@ -73,7 +73,7 @@ func TestKibibytesToMebibytes(t *testing.T) {
 	}
 
 	for _, tc := range testCases {
-		assert.Equal(t, tc.expected, (Unit(tc.value) * Kibibyte).Mebibytes())
+		assert.Equal(t, tc.expected, (Size(tc.value) * Kibibyte).Mebibytes())
 	}
 }
 
@@ -86,7 +86,7 @@ func TestKibibytesToGibibytes(t *testing.T) {
 	}
 
 	for _, tc := range testCases {
-		assert.Equal(t, tc.expected, (Unit(tc.value) * Kibibyte).Gibibytes())
+		assert.Equal(t, tc.expected, (Size(tc.value) * Kibibyte).Gibibytes())
 	}
 }
 
@@ -99,7 +99,7 @@ func TestMebibytesToBytes(t *testing.T) {
 	}
 
 	for _, tc := range testCases {
-		assert.Equal(t, tc.expected, (Unit(tc.value) * Mebibyte).Bytes())
+		assert.Equal(t, tc.expected, (Size(tc.value) * Mebibyte).Bytes())
 	}
 }
 
@@ -112,7 +112,7 @@ func TestMebibytesToKibibytes(t *testing.T) {
 	}
 
 	for _, tc := range testCases {
-		assert.Equal(t, tc.expected, (Unit(tc.value) * Mebibyte).Kibibytes())
+		assert.Equal(t, tc.expected, (Size(tc.value) * Mebibyte).Kibibytes())
 	}
 }
 
@@ -125,7 +125,7 @@ func TestMebibytesToGibibytes(t *testing.T) {
 	}
 
 	for _, tc := range testCases {
-		assert.Equal(t, tc.expected, (Unit(tc.value) * Mebibyte).Gibibytes())
+		assert.Equal(t, tc.expected, (Size(tc.value) * Mebibyte).Gibibytes())
 	}
 }
 
@@ -138,7 +138,7 @@ func TestGibibytesToBytes(t *testing.T) {
 	}
 
 	for _, tc := range testCases {
-		assert.Equal(t, tc.expected, (Unit(tc.value) * Gibibyte).Bytes())
+		assert.Equal(t, tc.expected, (Size(tc.value) * Gibibyte).Bytes())
 	}
 }
 
@@ -151,7 +151,7 @@ func TestGibibytesToKibibytes(t *testing.T) {
 	}
 
 	for _, tc := range testCases {
-		assert.Equal(t, tc.expected, (Unit(tc.value) * Gibibyte).Kibibytes())
+		assert.Equal(t, tc.expected, (Size(tc.value) * Gibibyte).Kibibytes())
 	}
 }
 
@@ -164,7 +164,7 @@ func TestGibibytesToMebibytes(t *testing.T) {
 	}
 
 	for _, tc := range testCases {
-		assert.Equal(t, tc.expected, (Unit(tc.value) * Gibibyte).Mebibytes())
+		assert.Equal(t, tc.expected, (Size(tc.value) * Gibibyte).Mebibytes())
 	}
 }
 
@@ -177,7 +177,33 @@ func TestMegahertzToGigahertz(t *testing.T) {
 	}
 
 	for _, tc := range testCases {
-		assert.Equal(t, tc.expected, (Unit(tc.value) * Megahertz).Gigahertz())
+		assert.Equal(t, tc.expected, (Frequency(tc.value) * Megahertz).Gigahertz())
+	}
+}
+
+func TestGigahertzToKHertz(t *testing.T) {
+	testCases := []testCase{
+		{value: 1, expected: 1000000000},
+		{value: 1.3, expected: 1300000000},
+		{value: 1.7, expected: 1700000000},
+		{value: 23.7, expected: 23700000000},
+	}
+
+	for _, tc := range testCases {
+		assert.Equal(t, tc.expected, (Frequency(tc.value) * Gigahertz).Hertz())
+	}
+}
+
+func TestGigahertzToKilohertz(t *testing.T) {
+	testCases := []testCase{
+		{value: 1, expected: 1000000},
+		{value: 1.3, expected: 1300000},
+		{value: 1.7, expected: 1700000},
+		{value: 23.7, expected: 23700000},
+	}
+
+	for _, tc := range testCases {
+		assert.Equal(t, tc.expected, (Frequency(tc.value) * Gigahertz).Kilohertz())
 	}
 }
 
@@ -190,6 +216,6 @@ func TestGigahertzToMegahertz(t *testing.T) {
 	}
 
 	for _, tc := range testCases {
-		assert.Equal(t, tc.expected, (Unit(tc.value) * Gigahertz).Megahertz())
+		assert.Equal(t, tc.expected, (Frequency(tc.value) * Gigahertz).Megahertz())
 	}
 }

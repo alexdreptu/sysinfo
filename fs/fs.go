@@ -20,39 +20,39 @@ type FS struct {
 }
 
 func (f *FS) TotalSpaceInKibibytes() float64 {
-	return (convert.Unit(f.Total) * convert.Byte).Kibibytes()
+	return (convert.Size(f.Total) * convert.Byte).Kibibytes()
 }
 
 func (f *FS) TotalSpaceInMebibytes() float64 {
-	return (convert.Unit(f.Total) * convert.Byte).Mebibytes()
+	return (convert.Size(f.Total) * convert.Byte).Mebibytes()
 }
 
 func (f *FS) TotalSpaceInGibibytes() float64 {
-	return (convert.Unit(f.Total) * convert.Byte).Gibibytes()
+	return (convert.Size(f.Total) * convert.Byte).Gibibytes()
 }
 
 func (f *FS) FreeSpaceInKibibytes() float64 {
-	return (convert.Unit(f.Free) * convert.Byte).Kibibytes()
+	return (convert.Size(f.Free) * convert.Byte).Kibibytes()
 }
 
 func (f *FS) FreeSpaceInMebibytes() float64 {
-	return (convert.Unit(f.Free) * convert.Byte).Mebibytes()
+	return (convert.Size(f.Free) * convert.Byte).Mebibytes()
 }
 
 func (f *FS) FreeSpaceInGibibytes() float64 {
-	return (convert.Unit(f.Free) * convert.Byte).Gibibytes()
+	return (convert.Size(f.Free) * convert.Byte).Gibibytes()
 }
 
 func (f *FS) UsedSpaceInKibibytes() float64 {
-	return (convert.Unit(f.Used) * convert.Byte).Kibibytes()
+	return (convert.Size(f.Used) * convert.Byte).Kibibytes()
 }
 
 func (f *FS) UsedSpaceInMebibytes() float64 {
-	return (convert.Unit(f.Used) * convert.Byte).Mebibytes()
+	return (convert.Size(f.Used) * convert.Byte).Mebibytes()
 }
 
 func (f *FS) UsedSpaceInGibibytes() float64 {
-	return (convert.Unit(f.Used) * convert.Byte).Gibibytes()
+	return (convert.Size(f.Used) * convert.Byte).Gibibytes()
 }
 
 // Fetch updates the FS struct woth new values
