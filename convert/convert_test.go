@@ -21,7 +21,7 @@ func TestBytesToKibibytes(t *testing.T) {
 	}
 
 	for _, tc := range testCases {
-		assert.Equal(t, tc.expected, (Size(tc.value) * Byte).Kibibytes())
+		assert.Equal(t, tc.expected, (Size(tc.value) * Byte).ToKibibytes())
 	}
 }
 
@@ -34,7 +34,7 @@ func TestBytesToMebibytes(t *testing.T) {
 	}
 
 	for _, tc := range testCases {
-		assert.Equal(t, tc.expected, (Size(tc.value) * Byte).Mebibytes())
+		assert.Equal(t, tc.expected, (Size(tc.value) * Byte).ToMebibytes())
 	}
 }
 
@@ -47,7 +47,7 @@ func TestBytesToGibibytes(t *testing.T) {
 	}
 
 	for _, tc := range testCases {
-		assert.Equal(t, tc.expected, (Size(tc.value) * Byte).Gibibytes())
+		assert.Equal(t, tc.expected, (Size(tc.value) * Byte).ToGibibytes())
 	}
 }
 
@@ -60,7 +60,7 @@ func TestKibibytesToBytes(t *testing.T) {
 	}
 
 	for _, tc := range testCases {
-		assert.Equal(t, tc.expected, (Size(tc.value) * Kibibyte).Bytes())
+		assert.Equal(t, tc.expected, (Size(tc.value) * Kibibyte).ToBytes())
 	}
 }
 
@@ -73,7 +73,7 @@ func TestKibibytesToMebibytes(t *testing.T) {
 	}
 
 	for _, tc := range testCases {
-		assert.Equal(t, tc.expected, (Size(tc.value) * Kibibyte).Mebibytes())
+		assert.Equal(t, tc.expected, (Size(tc.value) * Kibibyte).ToMebibytes())
 	}
 }
 
@@ -86,7 +86,7 @@ func TestKibibytesToGibibytes(t *testing.T) {
 	}
 
 	for _, tc := range testCases {
-		assert.Equal(t, tc.expected, (Size(tc.value) * Kibibyte).Gibibytes())
+		assert.Equal(t, tc.expected, (Size(tc.value) * Kibibyte).ToGibibytes())
 	}
 }
 
@@ -99,7 +99,7 @@ func TestMebibytesToBytes(t *testing.T) {
 	}
 
 	for _, tc := range testCases {
-		assert.Equal(t, tc.expected, (Size(tc.value) * Mebibyte).Bytes())
+		assert.Equal(t, tc.expected, (Size(tc.value) * Mebibyte).ToBytes())
 	}
 }
 
@@ -112,7 +112,7 @@ func TestMebibytesToKibibytes(t *testing.T) {
 	}
 
 	for _, tc := range testCases {
-		assert.Equal(t, tc.expected, (Size(tc.value) * Mebibyte).Kibibytes())
+		assert.Equal(t, tc.expected, (Size(tc.value) * Mebibyte).ToKibibytes())
 	}
 }
 
@@ -125,7 +125,7 @@ func TestMebibytesToGibibytes(t *testing.T) {
 	}
 
 	for _, tc := range testCases {
-		assert.Equal(t, tc.expected, (Size(tc.value) * Mebibyte).Gibibytes())
+		assert.Equal(t, tc.expected, (Size(tc.value) * Mebibyte).ToGibibytes())
 	}
 }
 
@@ -138,7 +138,7 @@ func TestGibibytesToBytes(t *testing.T) {
 	}
 
 	for _, tc := range testCases {
-		assert.Equal(t, tc.expected, (Size(tc.value) * Gibibyte).Bytes())
+		assert.Equal(t, tc.expected, (Size(tc.value) * Gibibyte).ToBytes())
 	}
 }
 
@@ -151,7 +151,7 @@ func TestGibibytesToKibibytes(t *testing.T) {
 	}
 
 	for _, tc := range testCases {
-		assert.Equal(t, tc.expected, (Size(tc.value) * Gibibyte).Kibibytes())
+		assert.Equal(t, tc.expected, (Size(tc.value) * Gibibyte).ToKibibytes())
 	}
 }
 
@@ -164,7 +164,7 @@ func TestGibibytesToMebibytes(t *testing.T) {
 	}
 
 	for _, tc := range testCases {
-		assert.Equal(t, tc.expected, (Size(tc.value) * Gibibyte).Mebibytes())
+		assert.Equal(t, tc.expected, (Size(tc.value) * Gibibyte).ToMebibytes())
 	}
 }
 
@@ -177,7 +177,7 @@ func TestMegahertzToGigahertz(t *testing.T) {
 	}
 
 	for _, tc := range testCases {
-		assert.Equal(t, tc.expected, (Frequency(tc.value) * Megahertz).Gigahertz())
+		assert.Equal(t, tc.expected, (Frequency(tc.value) * Megahertz).ToGigahertz())
 	}
 }
 
@@ -190,7 +190,7 @@ func TestGigahertzToKHertz(t *testing.T) {
 	}
 
 	for _, tc := range testCases {
-		assert.Equal(t, tc.expected, (Frequency(tc.value) * Gigahertz).Hertz())
+		assert.Equal(t, tc.expected, (Frequency(tc.value) * Gigahertz).ToHertz())
 	}
 }
 
@@ -203,7 +203,7 @@ func TestGigahertzToKilohertz(t *testing.T) {
 	}
 
 	for _, tc := range testCases {
-		assert.Equal(t, tc.expected, (Frequency(tc.value) * Gigahertz).Kilohertz())
+		assert.Equal(t, tc.expected, (Frequency(tc.value) * Gigahertz).ToKilohertz())
 	}
 }
 
@@ -216,6 +216,6 @@ func TestGigahertzToMegahertz(t *testing.T) {
 	}
 
 	for _, tc := range testCases {
-		assert.Equal(t, tc.expected, (Frequency(tc.value) * Gigahertz).Megahertz())
+		assert.Equal(t, tc.expected, (Frequency(tc.value) * Gigahertz).ToMegahertz())
 	}
 }

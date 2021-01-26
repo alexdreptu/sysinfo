@@ -19,34 +19,34 @@ const (
 	Gigahertz           = 1000 * Megahertz
 )
 
-func (s Size) Bytes() float64 {
+func (s Size) ToBytes() float64 {
 	return float64(s / Byte)
 }
 
-func (s Size) Kibibytes() float64 {
+func (s Size) ToKibibytes() float64 {
 	return float64(s / Kibibyte)
 }
 
-func (s Size) Mebibytes() float64 {
+func (s Size) ToMebibytes() float64 {
 	return float64(s / Mebibyte)
 }
 
-func (s Size) Gibibytes() float64 {
+func (s Size) ToGibibytes() float64 {
 	return float64(s / Gibibyte)
 }
 
-func (f Frequency) Hertz() float64 {
+func (f Frequency) ToHertz() float64 {
 	return float64(f / Hertz)
 }
 
-func (f Frequency) Kilohertz() float64 {
+func (f Frequency) ToKilohertz() float64 {
 	return float64(f / Kilohertz)
 }
 
-func (f Frequency) Megahertz() float64 {
+func (f Frequency) ToMegahertz() float64 {
 	return float64(f / Megahertz)
 }
 
-func (f Frequency) Gigahertz() float64 {
+func (f Frequency) ToGigahertz() float64 {
 	return float64(f / Gigahertz)
 }

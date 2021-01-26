@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"io/ioutil"
 	"os"
+	"path"
 	"strconv"
 	"strings"
 
@@ -32,30 +33,33 @@ const (
 )
 
 const (
-	cpuInfoPath    = "/proc/cpuinfo"
-	cpuFreqPath    = "/sys/devices/system/cpu/cpu0/cpufreq"
-	cpuMinFreqPath = "/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_min_freq"
-	cpuMaxFreqPath = "/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq"
+	cpuInfoPath = "/proc/cpuinfo"
+	cpuFreqPath = "/sys/devices/system/cpu/cpu0/cpufreq"
+)
+
+var (
+	cpuMinFreqPath = path.Join(cpuFreqPath, "puinfo_min_freq")
+	cpuMaxFreqPath = path.Join(cpuFreqPath, "cpuinfo_max_freq")
 )
 
 func (c *CPU) CacheSizeInMebibytes() float64 {
-	return (convert.Size(c.CacheSize) * convert.Kibibyte).Mebibytes()
+	return (convert.Size(c.CacheSize) * convert.Kibibyte).ToMebibytes()
 }
 
 func (c *CPU) MinFreqInMegahertz() float64 {
-	return (convert.Frequency(c.MinFreq) * convert.Kilohertz).Megahertz()
+	return (convert.Frequency(c.MinFreq) * convert.Kilohertz).ToMegahertz()
 }
 
 func (c *CPU) MinFreqInGigahertz() float64 {
-	return (convert.Frequency(c.MinFreq) * convert.Kilohertz).Gigahertz()
+	return (convert.Frequency(c.MinFreq) * convert.Kilohertz).ToGigahertz()
 }
 
 func (c *CPU) MaxFreqInMegahertz() float64 {
-	return (convert.Frequency(c.MaxFreq) * convert.Kilohertz).Megahertz()
+	return (convert.Frequency(c.MaxFreq) * convert.Kilohertz).ToMegahertz()
 }
 
 func (c *CPU) MaxFreqInGigahertz() float64 {
-	return (convert.Frequency(c.MaxFreq) * convert.Kilohertz).Gigahertz()
+	return (convert.Frequency(c.MaxFreq) * convert.Kilohertz).ToGigahertz()
 }
 
 func (c *CPU) FlagsAsString() string {

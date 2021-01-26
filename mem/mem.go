@@ -31,172 +31,174 @@ type Mem struct {
 	F            fetchFunc
 }
 
+const memInfoPath = "/proc/meminfo"
+
 func (m *Mem) TotalMemInKibibytes() float64 {
-	return (convert.Size(m.TotalMem) * convert.Byte).Kibibytes()
+	return (convert.Size(m.TotalMem) * convert.Byte).ToKibibytes()
 }
 
 func (m *Mem) TotalMemInMebibytes() float64 {
-	return (convert.Size(m.TotalMem) * convert.Byte).Mebibytes()
+	return (convert.Size(m.TotalMem) * convert.Byte).ToMebibytes()
 }
 
 func (m *Mem) TotalMemInGibibytes() float64 {
-	return (convert.Size(m.TotalMem) * convert.Byte).Gibibytes()
+	return (convert.Size(m.TotalMem) * convert.Byte).ToGibibytes()
 }
 
 func (m *Mem) TotalHighMemInKibibytes() float64 {
-	return (convert.Size(m.TotalHighMem) * convert.Byte).Kibibytes()
+	return (convert.Size(m.TotalHighMem) * convert.Byte).ToKibibytes()
 }
 
 func (m *Mem) TotalHighMemInMebibytes() float64 {
-	return (convert.Size(m.TotalHighMem) * convert.Byte).Mebibytes()
+	return (convert.Size(m.TotalHighMem) * convert.Byte).ToMebibytes()
 }
 
 func (m *Mem) TotalHighMemInGibibytes() float64 {
-	return (convert.Size(m.TotalHighMem) * convert.Byte).Gibibytes()
+	return (convert.Size(m.TotalHighMem) * convert.Byte).ToGibibytes()
 }
 
 func (m *Mem) FreeMemInKibibytes() float64 {
-	return (convert.Size(m.FreeMem) * convert.Byte).Kibibytes()
+	return (convert.Size(m.FreeMem) * convert.Byte).ToKibibytes()
 }
 
 func (m *Mem) FreeMemInMebibytes() float64 {
-	return (convert.Size(m.FreeMem) * convert.Byte).Mebibytes()
+	return (convert.Size(m.FreeMem) * convert.Byte).ToMebibytes()
 }
 
 func (m *Mem) FreeMemInGibibytes() float64 {
-	return (convert.Size(m.FreeMem) * convert.Byte).Gibibytes()
+	return (convert.Size(m.FreeMem) * convert.Byte).ToGibibytes()
 }
 
 func (m *Mem) FreeHighMemInKibibytes() float64 {
-	return (convert.Size(m.FreeHighMem) * convert.Byte).Kibibytes()
+	return (convert.Size(m.FreeHighMem) * convert.Byte).ToKibibytes()
 }
 
 func (m *Mem) FreeHighMemInMebibytes() float64 {
-	return (convert.Size(m.FreeHighMem) * convert.Byte).Mebibytes()
+	return (convert.Size(m.FreeHighMem) * convert.Byte).ToMebibytes()
 }
 
 func (m *Mem) FreeHighMemInGibibytes() float64 {
-	return (convert.Size(m.FreeHighMem) * convert.Byte).Gibibytes()
+	return (convert.Size(m.FreeHighMem) * convert.Byte).ToGibibytes()
 }
 
 func (m *Mem) AvailMemInKibibytes() float64 {
-	return (convert.Size(m.AvailMem) * convert.Byte).Kibibytes()
+	return (convert.Size(m.AvailMem) * convert.Byte).ToKibibytes()
 }
 
 func (m *Mem) AvailMemInMebibytes() float64 {
-	return (convert.Size(m.AvailMem) * convert.Byte).Mebibytes()
+	return (convert.Size(m.AvailMem) * convert.Byte).ToMebibytes()
 }
 
 func (m *Mem) AvailMemInGibibytes() float64 {
-	return (convert.Size(m.AvailMem) * convert.Byte).Gibibytes()
+	return (convert.Size(m.AvailMem) * convert.Byte).ToGibibytes()
 }
 
 func (m *Mem) CachedMemInKibibytes() float64 {
-	return (convert.Size(m.CachedMem) * convert.Byte).Kibibytes()
+	return (convert.Size(m.CachedMem) * convert.Byte).ToKibibytes()
 }
 
 func (m *Mem) CachedMemInMebibytes() float64 {
-	return (convert.Size(m.CachedMem) * convert.Byte).Mebibytes()
+	return (convert.Size(m.CachedMem) * convert.Byte).ToMebibytes()
 }
 
 func (m *Mem) CachedMemInGibibytes() float64 {
-	return (convert.Size(m.CachedMem) * convert.Byte).Gibibytes()
+	return (convert.Size(m.CachedMem) * convert.Byte).ToGibibytes()
 }
 
 func (m *Mem) UsedMemInKibibytes() float64 {
-	return (convert.Size(m.UsedMem) * convert.Byte).Kibibytes()
+	return (convert.Size(m.UsedMem) * convert.Byte).ToKibibytes()
 }
 
 func (m *Mem) UsedMemInMebibytes() float64 {
-	return (convert.Size(m.UsedMem) * convert.Byte).Mebibytes()
+	return (convert.Size(m.UsedMem) * convert.Byte).ToMebibytes()
 }
 
 func (m *Mem) UsedMemInGibibytes() float64 {
-	return (convert.Size(m.UsedMem) * convert.Byte).Gibibytes()
+	return (convert.Size(m.UsedMem) * convert.Byte).ToGibibytes()
 }
 
 func (m *Mem) TotalUsedMemInKibibytes() float64 {
-	return (convert.Size(m.TotalUsedMem) * convert.Byte).Kibibytes()
+	return (convert.Size(m.TotalUsedMem) * convert.Byte).ToKibibytes()
 }
 
 func (m *Mem) TotalUsedMemInMebibytes() float64 {
-	return (convert.Size(m.TotalUsedMem) * convert.Byte).Mebibytes()
+	return (convert.Size(m.TotalUsedMem) * convert.Byte).ToMebibytes()
 }
 
 func (m *Mem) TotalUsedMemInGibibytes() float64 {
-	return (convert.Size(m.TotalUsedMem) * convert.Byte).Gibibytes()
+	return (convert.Size(m.TotalUsedMem) * convert.Byte).ToGibibytes()
 }
 
 func (m *Mem) TotalUsedInKibibytes() float64 {
-	return (convert.Size(m.TotalUsed) * convert.Byte).Kibibytes()
+	return (convert.Size(m.TotalUsed) * convert.Byte).ToKibibytes()
 }
 
 func (m *Mem) TotalUsedInMebibytes() float64 {
-	return (convert.Size(m.TotalUsed) * convert.Byte).Mebibytes()
+	return (convert.Size(m.TotalUsed) * convert.Byte).ToMebibytes()
 }
 
 func (m *Mem) TotalUsedInGibibytes() float64 {
-	return (convert.Size(m.TotalUsed) * convert.Byte).Gibibytes()
+	return (convert.Size(m.TotalUsed) * convert.Byte).ToGibibytes()
 }
 
 func (m *Mem) BufferMemInKibibytes() float64 {
-	return (convert.Size(m.BufferMem) * convert.Byte).Kibibytes()
+	return (convert.Size(m.BufferMem) * convert.Byte).ToKibibytes()
 }
 
 func (m *Mem) BufferMemInMebibytes() float64 {
-	return (convert.Size(m.BufferMem) * convert.Byte).Mebibytes()
+	return (convert.Size(m.BufferMem) * convert.Byte).ToMebibytes()
 }
 
 func (m *Mem) BufferMemInGibibytes() float64 {
-	return (convert.Size(m.BufferMem) * convert.Byte).Gibibytes()
+	return (convert.Size(m.BufferMem) * convert.Byte).ToGibibytes()
 }
 
 func (m *Mem) SharedMemInKibibytes() float64 {
-	return (convert.Size(m.SharedMem) * convert.Byte).Kibibytes()
+	return (convert.Size(m.SharedMem) * convert.Byte).ToKibibytes()
 }
 
 func (m *Mem) SharedMemInMebibytes() float64 {
-	return (convert.Size(m.SharedMem) * convert.Byte).Mebibytes()
+	return (convert.Size(m.SharedMem) * convert.Byte).ToMebibytes()
 }
 
 func (m *Mem) SharedMemInGibibytes() float64 {
-	return (convert.Size(m.SharedMem) * convert.Byte).Gibibytes()
+	return (convert.Size(m.SharedMem) * convert.Byte).ToGibibytes()
 }
 
 func (m *Mem) TotalSwapInKibibytes() float64 {
-	return (convert.Size(m.TotalSwap) * convert.Byte).Kibibytes()
+	return (convert.Size(m.TotalSwap) * convert.Byte).ToKibibytes()
 }
 
 func (m *Mem) TotalSwapInMebibytes() float64 {
-	return (convert.Size(m.TotalSwap) * convert.Byte).Mebibytes()
+	return (convert.Size(m.TotalSwap) * convert.Byte).ToMebibytes()
 }
 
 func (m *Mem) TotalSwapInGibibytes() float64 {
-	return (convert.Size(m.TotalSwap) * convert.Byte).Gibibytes()
+	return (convert.Size(m.TotalSwap) * convert.Byte).ToGibibytes()
 }
 
 func (m *Mem) FreeSwapInKibibytes() float64 {
-	return (convert.Size(m.FreeSwap) * convert.Byte).Kibibytes()
+	return (convert.Size(m.FreeSwap) * convert.Byte).ToKibibytes()
 }
 
 func (m *Mem) FreeSwapInMebibytes() float64 {
-	return (convert.Size(m.FreeSwap) * convert.Byte).Mebibytes()
+	return (convert.Size(m.FreeSwap) * convert.Byte).ToMebibytes()
 }
 
 func (m *Mem) FreeSwapInGibibytes() float64 {
-	return (convert.Size(m.FreeSwap) * convert.Byte).Gibibytes()
+	return (convert.Size(m.FreeSwap) * convert.Byte).ToGibibytes()
 }
 
 func (m *Mem) UsedSwapInKibibytes() float64 {
-	return (convert.Size(m.UsedSwap) * convert.Byte).Kibibytes()
+	return (convert.Size(m.UsedSwap) * convert.Byte).ToKibibytes()
 }
 
 func (m *Mem) UsedSwapInMebibytes() float64 {
-	return (convert.Size(m.UsedSwap) * convert.Byte).Mebibytes()
+	return (convert.Size(m.UsedSwap) * convert.Byte).ToMebibytes()
 }
 
 func (m *Mem) UsedSwapInGibibytes() float64 {
-	return (convert.Size(m.UsedSwap) * convert.Byte).Gibibytes()
+	return (convert.Size(m.UsedSwap) * convert.Byte).ToGibibytes()
 }
 
 // Fetch updates the Mem struct woth new values
@@ -211,7 +213,7 @@ func (m *Mem) Fetch() error {
 	}
 
 	if m.AvailMem == 0 && m.CachedMem == 0 {
-		if err := m.readMeminfo(); err != nil {
+		if err := m.readMemInfo(); err != nil {
 			return err
 		}
 	}
@@ -234,8 +236,8 @@ func (m *Mem) Fetch() error {
 	return nil
 }
 
-func (m *Mem) readMeminfo() error {
-	file, err := os.Open("/proc/meminfo")
+func (m *Mem) readMemInfo() error {
+	file, err := os.Open(memInfoPath)
 	if err != nil {
 		return err
 	}
@@ -259,14 +261,14 @@ func (m *Mem) readMeminfo() error {
 			if err != nil {
 				return err
 			}
-			m.AvailMem = uint64((convert.Size(n) * convert.Kibibyte).Bytes())
+			m.AvailMem = uint64((convert.Size(n) * convert.Kibibyte).ToBytes())
 
 		case "Cached":
 			n, err := strconv.Atoi(value)
 			if err != nil {
 				return err
 			}
-			m.CachedMem = uint64((convert.Size(n) * convert.Kibibyte).Bytes())
+			m.CachedMem = uint64((convert.Size(n) * convert.Kibibyte).ToBytes())
 		}
 	}
 
